@@ -98,6 +98,62 @@ defspeed = 3;
             <string>// prepare the clone code
 clone_spawning = false;
 clone_running = false;
+
+// clone spawn vars
+cloneSpawnx = self.x;
+cloneSpawny = self.y;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Spawn clone</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// create clone and stop "spawning"
+clone_spawning = false;
+clone_running = true;
+
+// TEMP
+// create a starting point where player is (100 means 100% path speed)
+path_add_point(global.clonePath, self.x, self.y, 100);
+
+instance_create(cloneSpawnx, cloneSpawny, obj_clone);
+
 </string>
           </argument>
         </arguments>
@@ -216,7 +272,7 @@ if (dx!=0 &amp;&amp; !place_free(self.x+dx,self.y)) {
     if (dx&gt;0) move_contact_solid(0,dx);
     if (dx&lt;0) move_contact_solid(180,-dx);
     
-    // and stop moving sanpping
+    // and stop moving snapping
     dx=0;
 
 }
@@ -282,21 +338,39 @@ self.y+=dy
             <string>// handle the clone spawning
 
 // prepare a clone spawn if it is not spawned
-if (!clone_spawning &amp;&amp; !clone_running &amp;&amp; 0==1) { // ALWAYS SET TO FALSE TO STOP GAME CRASH
+if (!clone_spawning &amp;&amp; !clone_running) { 
 
     // if the player is moving then the clone will spawn in
     if (dx!=0 || dy!=0) {
     
         clone_spawning = true;
         // this alarm will actually spawn in the clone
-        alarm[0] = 1 * room_speed; // 1 second
+        alarm[0] = 4 * room_speed; // 4 second
         
         // POSSIBLE: add a particle spawner where the clone will be to warn the player
         
-        clonePath = path_add();
+        
+        global.clonePath = path_add();
+        // make the path stright, so point to point instead of curvy
+        path_set_kind(global.clonePath,0);
+        
+        // create a starting point where player is (100 means 100% path speed)
+        path_add_point(global.clonePath, self.x, self.y, 100);
+        // sqrt(sqr(dx)+sqr(dy)) is the speed in combined x and y
+        
+        // record spawn coordinates
+        cloneSpawnx=self.x;
+        cloneSpawny=self.y;
     
     }
 
+}
+
+// at changes in motion...
+// ALWAYS FALSE TO REMOVE ODD ACTION
+if (false){//prevdx!=dx || prevdy!=dy) {
+    // add a new point to go to, thus recording the positions of the player in a path
+    path_add_point(global.clonePath, self.x, self.y, 100);
 }
 
 // save dx and dy for next iteration of step
@@ -347,6 +421,127 @@ prevdy=dy
 if (keyboard_check_pressed(vk_f4)) {
     window_set_fullscreen(!window_get_fullscreen());
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Death or Restart</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// restart room
+if (keyboard_check_pressed(ord("0"))) {
+    event_user(0); // FUNCTION: death or restart
+}
+
+// check death (by colliding with clone)
+if (instance_place(self.x,self.y,obj_clone)) {
+    event_user(0); // FUNCTION: death or restart
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>FUNCTION</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>death or restart</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// FUNCTION: death or restart
+
+// POSSIBLE: provide death message
+show_debug_message("death or restart");
+
+// delete path to prevent leakage
+path_delete(global.clonePath);
+
+// restart room
+room_restart();
 </string>
           </argument>
         </arguments>
