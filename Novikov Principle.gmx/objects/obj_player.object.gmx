@@ -353,6 +353,8 @@ if (!clone_spawning &amp;&amp; !clone_running) {
         global.clonePath = path_add();
         // make the path stright, so point to point instead of curvy
         path_set_kind(global.clonePath,0);
+        // make the path be open
+        path_set_closed(global.clonePath,false);
         
         // create a starting point where player is (100 means 100% path speed)
         path_add_point(global.clonePath, self.x, self.y, 100);
@@ -366,11 +368,11 @@ if (!clone_spawning &amp;&amp; !clone_running) {
 
 }
 
-// at changes in motion...
-// ALWAYS FALSE TO REMOVE ODD ACTION
-if (false){//prevdx!=dx || prevdy!=dy) {
-    // add a new point to go to, thus recording the positions of the player in a path
-    path_add_point(global.clonePath, self.x, self.y, 100);
+// at changes in motion and there is a clone (or it is spawning)...
+if ( (prevdx!=dx || prevdy!=dy) &amp;&amp; (clone_spawning || clone_running) ) {
+    
+    event_user(1); // FUNCTION: extend clone path
+
 }
 
 // save dx and dy for next iteration of step
@@ -470,6 +472,101 @@ if (keyboard_check_pressed(ord("0"))) {
 if (instance_place(self.x,self.y,obj_clone)) {
     event_user(0); // FUNCTION: death or restart
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="11">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>FUNCTION</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>extend clone path</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// extend path
+
+show_debug_message("extend path")//TEMP
+
+// retain old path length for a minute... (see paragraph below)
+old_path_length = path_get_length(global.clonePath);
+
+// add a new point to go to, thus recording the positions of the player in a path
+path_add_point(global.clonePath, self.x, self.y, 100);
+
+// retain new path length for a minute... (see paragraph below)
+new_path_length = path_get_length(global.clonePath);
+   
+// move the clone to where it was so it doesn't jump along the path
+if (clone_running) 
+    // find 1 clone and move it back...
+    with (instance_find(obj_clone, 1)) {
+        /*
+        so the path positions are in %s completed of the path
+        this is why the clone jumps if the path is not changes
+        so to do this, I need to find the percent of the new path
+        doing this we use:
+        new percent = old percent * old amount in pixels * new amount of pixels
+        e.g.
+        (Supppose I have traveled 100% of the path of 1 pixel and now there are 2 pixels,
+        I have thus only taveled half of the new pixles)
+        new percent = 1 * 1 / 2 = 0.5
+        */
+        show_debug_message(string(path_position) + " before");//TEMP
+        path_position = path_position * old_path_length / new_path_length;
+        show_debug_message(string(path_position) + " after");//TEMP
+        show_debug_message(string(old_path_length) + "/" + string(new_path_length));//TEMP
+    }
 </string>
           </argument>
         </arguments>
