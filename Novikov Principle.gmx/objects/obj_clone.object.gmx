@@ -90,12 +90,13 @@
           <argument>
             <kind>1</kind>
             <string>// add more path if remaing path is running low
-if (0.2 &gt; 1 - path_position) {
+if (0.01 &gt;= 1 - path_position) {
     
     show_debug_message("clone path low...");
 
-    // find the player
-    with (instance_find(obj_player,1))
+    // find the player (the 0 means the 0th instance,
+    // similar to the 0th element of an array)
+    with (instance_find(obj_player,0))
         event_user(1); // FUNCTION: extend clone path
 
 }

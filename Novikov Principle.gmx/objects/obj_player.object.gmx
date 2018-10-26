@@ -148,10 +148,6 @@ cloneSpawny = self.y;
 clone_spawning = false;
 clone_running = true;
 
-// TEMP
-// create a starting point where player is (100 means 100% path speed)
-path_add_point(global.clonePath, self.x, self.y, 100);
-
 instance_create(cloneSpawnx, cloneSpawny, obj_clone);
 
 </string>
@@ -536,21 +532,25 @@ if (instance_place(self.x,self.y,obj_clone)) {
             <kind>1</kind>
             <string>// extend path
 
-show_debug_message("extend path")//TEMP
+show_debug_message("extend path")
 
 // retain old path length for a minute... (see paragraph below)
-old_path_length = path_get_length(global.clonePath);
+// (global is needed because the later reference is in a "different instance"
+// even though it is in the same code block)
+global.old_path_length = path_get_length(global.clonePath);
 
 // add a new point to go to, thus recording the positions of the player in a path
 path_add_point(global.clonePath, self.x, self.y, 100);
 
 // retain new path length for a minute... (see paragraph below)
-new_path_length = path_get_length(global.clonePath);
+// (global explained above)
+global.new_path_length = path_get_length(global.clonePath);
    
 // move the clone to where it was so it doesn't jump along the path
 if (clone_running) 
     // find 1 clone and move it back...
-    with (instance_find(obj_clone, 1)) {
+    // (the 0 means the 0th instance, similar to the 0th element of an array)
+    with (instance_find(obj_clone, 0)) {
         /*
         so the path positions are in %s completed of the path
         this is why the clone jumps if the path is not changes
@@ -562,10 +562,10 @@ if (clone_running)
         I have thus only taveled half of the new pixles)
         new percent = 1 * 1 / 2 = 0.5
         */
-        show_debug_message(string(path_position) + " before");//TEMP
-        path_position = path_position * old_path_length / new_path_length;
-        show_debug_message(string(path_position) + " after");//TEMP
-        show_debug_message(string(old_path_length) + "/" + string(new_path_length));//TEMP
+        path_position = path_positionprevious * global.old_path_length / global.new_path_length;
+        show_debug_message("Before: " + string(path_positionprevious));
+        show_debug_message("After: " + string(path_position));
+        show_debug_message("Length: " + string(global.old_path_length) + "/" + string(global.new_path_length));
     }
 </string>
           </argument>
