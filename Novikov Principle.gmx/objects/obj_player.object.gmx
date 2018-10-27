@@ -54,7 +54,11 @@ prevdx = 0;
 prevdy = 0;
 
 // speed the player moves at
-defspeed = 3;
+defspeed = 5;
+
+// set clone spawn speed (seconds long)
+spawnspeed = 4;
+// bug: keep on powers of 2
 </string>
           </argument>
         </arguments>
@@ -368,10 +372,10 @@ part_emitter_destroy(global.partPlayerClone,global.partPlayer);
 clone_spawning = false;
 clone_running = true;
 
-instance_create(cloneSpawnx, cloneSpawny, obj_clone);
-
 // make sure there is an extra point to go to
 event_user(1); // FUNCTION: extend clone path
+
+instance_create(cloneSpawnx, cloneSpawny, obj_clone);
 </string>
           </argument>
         </arguments>
@@ -669,7 +673,7 @@ if (!clone_spawning &amp;&amp; !clone_running) {
     
         clone_spawning = true;
         // this alarm will actually spawn in the clone
-        alarm[0] = 4 * room_speed; // 4 second
+        alarm[0] = spawnspeed * room_speed;
         
         // summon a warning lotus
         instance_create(self.x,self.y,obj_lotus);

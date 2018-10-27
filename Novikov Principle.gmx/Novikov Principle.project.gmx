@@ -39,7 +39,10 @@
     <object>objects\obj_particle_deleter</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_room0</room>
+    <room>rooms\rm_tut0</room>
+    <room>rooms\rm_tut1</room>
+    <room>rooms\rm_tut2</room>
+    <room>rooms\rm_concept</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

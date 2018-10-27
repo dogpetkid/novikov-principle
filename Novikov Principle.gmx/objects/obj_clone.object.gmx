@@ -45,8 +45,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>path_start(global.clonePath, 3, path_action_stop, true);
-//path_add_point(global.clonePath,0,0,100)
+            <string>// follow path
+
+path_start(global.clonePath, obj_player.defspeed, path_action_stop, true);
+
+
+// add make sure there is an extra point to go to
+// (0 means the 0th instance similar to the 0th element of an array)
+//with (instance_find(obj_player,0)) event_user(1); // FUNCTION: extend clone path
 </string>
           </argument>
         </arguments>

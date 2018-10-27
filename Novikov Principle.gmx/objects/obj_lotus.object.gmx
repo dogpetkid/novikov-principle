@@ -48,7 +48,7 @@
             <string>// set image speed (to figure out death timer)
 
 // use lotus as a clock (that self-destroys)
-image_speed = 2 / room_speed; // 0.5 seconds per change of clock
+image_speed = 8/obj_player.spawnspeed / room_speed; // 0.5 seconds per change of clock
 /*
 MATH:
 4 seconds = 8 images
