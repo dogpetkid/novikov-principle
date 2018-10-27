@@ -3,7 +3,7 @@
   <spriteName>spr_player</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-10</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -150,6 +150,8 @@ clone_running = true;
 
 instance_create(cloneSpawnx, cloneSpawny, obj_clone);
 
+// make sure there is an extra point to go to
+event_user(1); // FUNCTION: extend clone path
 </string>
           </argument>
         </arguments>
@@ -405,6 +407,9 @@ if (!clone_spawning &amp;&amp; !clone_running) {
         // this alarm will actually spawn in the clone
         alarm[0] = 4 * room_speed; // 4 second
         
+        // summon a warning lotus
+        instance_create(self.x,self.y,obj_lotus);
+        
         // POSSIBLE: add a particle spawner where the clone will be to warn the player
         
         
@@ -434,8 +439,8 @@ if ( (prevdx!=dx || prevdy!=dy) &amp;&amp; (clone_spawning || clone_running) ) {
 }
 
 // save dx and dy for next iteration of step
-prevdx=dx
-prevdy=dy
+prevdx=dx;
+prevdy=dy;
 </string>
           </argument>
         </arguments>
