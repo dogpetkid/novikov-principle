@@ -9,6 +9,7 @@
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\spr_clone</sprite>
     <sprite>sprites\spr_lotus</sprite>
+    <sprite>sprites\spr_exit</sprite>
     <sprites name="Walls">
       <sprite>sprites\spr_wall</sprite>
       <sprite>sprites\spr_wall_red</sprite>
@@ -25,6 +26,7 @@
     <object>objects\obj_player</object>
     <object>objects\obj_clone</object>
     <object>objects\obj_lotus</object>
+    <object>objects\obj_exit</object>
     <objects name="Walls">
       <object>objects\obj_wall</object>
       <object>objects\obj_wall_red</object>
