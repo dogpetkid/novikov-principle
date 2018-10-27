@@ -36,6 +36,7 @@
       <object>objects\obj_button_channels</object>
       <object>objects\obj_button_red</object>
     </objects>
+    <object>objects\obj_particle_deleter</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_room0</room>

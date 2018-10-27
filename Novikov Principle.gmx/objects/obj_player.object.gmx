@@ -106,6 +106,226 @@ cloneSpawny = self.y;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Prepare particle types</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>partSpawn = part_type_create();
+part_type_shape(partSpawn,pt_shape_flare);
+part_type_size(partSpawn,0.5,0.7,0,0);
+// particles quick but decelerate
+part_type_speed(partSpawn,3,5,-0.1,0);
+// particles can move any direction
+part_type_direction(partSpawn,0,359,0,0);
+// particles die fast
+part_type_life(partSpawn,0.25 * room_speed, 0.35 * room_speed);
+
+
+
+// clone particles mock the normal particles except are purple
+partClone = part_type_create();
+part_type_size(partClone,0.25,0.4,0,0);
+part_type_colour1(partClone,c_purple);
+// duplicated from above
+part_type_shape(partClone,pt_shape_flare);
+part_type_speed(partClone,3,5,-0.1,0);
+part_type_direction(partClone,0,359,0,0);
+part_type_life(partClone,0.25 * room_speed, 0.35 * room_speed);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Prepare Player and clone particles</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// create a particle system for the player and the clone
+
+global.partPlayerClone = part_system_create();
+
+// have particles be on top
+part_system_depth(global.partPlayerClone,-100);
+
+
+// setup player emitter
+global.partPlayer = part_emitter_create(global.partPlayerClone);
+
+// setup clone emitter
+global.partClone = part_emitter_create(global.partPlayerClone);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Player spawn particles</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// Player spawn particles
+
+// set spawn range to be self
+part_emitter_region(
+// using player emitter...
+global.partPlayerClone,global.partPlayer,
+// only spawn particles on self
+self.x,self.x,self.y,self.y,
+// and just have it be a "line" with linear spawn rates
+ps_shape_line, ps_distr_linear
+)
+
+// emit spawn particles...
+part_emitter_stream(
+// using player emitter...
+global.partPlayerClone,global.partPlayer,
+// at 1 flare particle per step
+partSpawn,1);
+
+alarm[1] = 0.5 * room_speed // 0.5 seconds
+// stop spawning particles in 0.5 seconds
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Stop spawn particles</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// remove the particle emitter for player
+
+part_emitter_destroy(global.partPlayerClone,global.partPlayer);
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="2" enumb="0">
       <action>
@@ -152,6 +372,50 @@ instance_create(cloneSpawnx, cloneSpawny, obj_clone);
 
 // make sure there is an extra point to go to
 event_user(1); // FUNCTION: extend clone path
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Stop clone particles</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// turn off emitter
+part_emitter_stream(
+global.partPlayerClone,global.partClone,
+partClone,0);
 </string>
           </argument>
         </arguments>
@@ -426,6 +690,9 @@ if (!clone_spawning &amp;&amp; !clone_running) {
         // record spawn coordinates
         cloneSpawnx=self.x;
         cloneSpawny=self.y;
+        
+        // turn on particles
+        event_user(3); // FUNCTION: clone particles
     
     }
 
@@ -579,6 +846,9 @@ if (instance_place(self.x,self.y,obj_clone)) {
 
 if (instance_place(self.x,self.y,obj_exit)) {
     
+    // remove all particles
+    instance_create(0,0,obj_particle_deleter);
+
     show_message("Level complete! Good job!"); // TEMP
     
     // goto next room or restart
@@ -586,6 +856,86 @@ if (instance_place(self.x,self.y,obj_exit)) {
     else room_restart();
 
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>FUNCTION</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>clone particles</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// start spawning clone particles
+
+// set spawn range to be self
+part_emitter_region(
+// using clone emitter...
+global.partPlayerClone,global.partClone,
+// only spawn particles on self
+self.x-16,self.x+16,self.y-16,self.y+16,
+// and just have it be a rectagle and be in the center
+ps_shape_rectangle, ps_distr_gaussian
+)
+
+// emit spawn particles...
+part_emitter_stream(
+// using clone emitter...
+global.partPlayerClone,global.partClone,
+// at 2 flare particle per step
+partClone,2);
 </string>
           </argument>
         </arguments>
@@ -826,6 +1176,9 @@ show_debug_message("death or restart");
 
 // delete path to prevent leakage
 event_user(2); // FUNCITON: delete the clone path
+
+// remove all particles
+instance_create(0,0,obj_particle_deleter);
 
 // restart room
 room_restart();
