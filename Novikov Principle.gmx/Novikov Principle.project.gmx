@@ -9,6 +9,9 @@
     <sprite>sprites\spr_wall</sprite>
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\spr_clone</sprite>
+    <sprites name="Buttons">
+      <sprite>sprites\spr_button</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -18,6 +21,10 @@
     <object>objects\obj_wall</object>
     <object>objects\obj_player</object>
     <object>objects\obj_clone</object>
+    <objects name="Channels">
+      <object>objects\obj_button_channels</object>
+      <object>objects\obj_button_red</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_room0</room>
