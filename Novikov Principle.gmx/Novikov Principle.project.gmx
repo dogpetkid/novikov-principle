@@ -28,6 +28,7 @@
     <object>objects\obj_clone</object>
     <object>objects\obj_lotus</object>
     <object>objects\obj_exit</object>
+    <object>objects\obj_shocker</object>
     <objects name="Walls">
       <object>objects\obj_wall</object>
       <object>objects\obj_wall_red</object>
@@ -37,8 +38,10 @@
       <object>objects\obj_button_channels</object>
       <object>objects\obj_button_red</object>
     </objects>
-    <object>objects\obj_particle_deleter</object>
-    <object>objects\obj_shocker</object>
+    <objects name="Particles">
+      <object>objects\obj_particle_container</object>
+      <object>objects\obj_particle_deleter</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_tut0</room>
