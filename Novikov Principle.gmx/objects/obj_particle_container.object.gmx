@@ -113,12 +113,16 @@
 // Particle system shared by the player and clone
 // (they share a system as they are closely related)
 global.partPlayerClone = part_system_create();
+// have particles be on top
+part_system_depth(global.partPlayerClone,-100);
 
 // Particle system for exit
 global.partExitS = part_system_create();
+part_system_depth(global.partExitS,-100);
 
 // Particle system for shockers
 global.partShockerS = part_system_create();
+part_system_depth(global.partShockerS,-100);
 
 
 

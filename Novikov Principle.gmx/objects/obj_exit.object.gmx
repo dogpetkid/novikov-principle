@@ -97,13 +97,7 @@ part_type_life(partExitP,0.3 * room_speed, 0.5 * room_speed);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// create a particle system for the exit
-
-//global.partExitS = part_system_create();
-
-// have particles be on top
-part_system_depth(global.partExitS,-100)
-
+            <string>// create a particle emitter for the exit
 
 // setup exit emitter
 global.partExitE = part_emitter_create(global.partExitS)

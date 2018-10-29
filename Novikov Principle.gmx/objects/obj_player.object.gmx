@@ -207,13 +207,7 @@ part_type_life(partClone,0.25 * room_speed, 0.35 * room_speed);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// create a particle system for the player and the clone
-
-//global.partPlayerClone = part_system_create();
-
-// have particles be on top
-part_system_depth(global.partPlayerClone,-100);
-
+            <string>// create a particle emitters for the player and the clone
 
 // setup player emitter
 global.partPlayer = part_emitter_create(global.partPlayerClone);

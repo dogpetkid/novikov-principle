@@ -89,6 +89,7 @@
 
 part_emitter_destroy_all(global.partPlayerClone);
 part_emitter_destroy_all(global.partExitS);
+part_emitter_destroy_all(global.partShockerS);
 
 
 
