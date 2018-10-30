@@ -10,6 +10,7 @@
     <sprite>sprites\spr_clone</sprite>
     <sprite>sprites\spr_lotus</sprite>
     <sprite>sprites\spr_exit</sprite>
+    <sprite>sprites\spr_shocker</sprite>
     <sprites name="Walls">
       <sprite>sprites\spr_wall</sprite>
       <sprite>sprites\spr_wall_red</sprite>
@@ -17,12 +18,13 @@
     <sprites name="Buttons">
       <sprite>sprites\spr_button</sprite>
     </sprites>
-    <sprite>sprites\spr_shocker</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
   </backgrounds>
-  <paths name="paths"/>
+  <paths name="paths">
+    <path>paths\path0</path>
+  </paths>
   <objects name="objects">
     <object>objects\obj_player</object>
     <object>objects\obj_clone</object>
