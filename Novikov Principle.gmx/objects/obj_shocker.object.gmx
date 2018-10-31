@@ -50,8 +50,11 @@
 
 
 
-// follow the path
+// TEMP
+path = path0;
 
+// follow the path
+path_start(path,obj_player.defspeed+1,path_action_reverse,true);
 </string>
           </argument>
         </arguments>

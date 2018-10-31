@@ -800,6 +800,11 @@ if (keyboard_check_pressed(ord("0"))) {
 if (instance_place(self.x,self.y,obj_clone)) {
     event_user(0); // FUNCTION: death or restart
 }
+
+// check death (by colliding with a shocker)
+if (instance_place(self.x,self.y,obj_shocker)) {
+    event_user(0); // FUNCTION: death or restart
+}
 </string>
           </argument>
         </arguments>
