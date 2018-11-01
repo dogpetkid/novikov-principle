@@ -14,9 +14,11 @@
     <sprites name="Walls">
       <sprite>sprites\spr_wall</sprite>
       <sprite>sprites\spr_wall_red</sprite>
+      <sprite>sprites\spr_wall_purple</sprite>
     </sprites>
     <sprites name="Buttons">
       <sprite>sprites\spr_button</sprite>
+      <sprite>sprites\spr_button_purple</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -36,10 +38,13 @@
       <object>objects\obj_wall</object>
       <object>objects\obj_wall_red</object>
       <object>objects\obj_wall_red_i</object>
+      <object>objects\obj_wall_purple</object>
+      <object>objects\obj_wall_purple_i</object>
     </objects>
     <objects name="Channels">
       <object>objects\obj_button_channels</object>
       <object>objects\obj_button_red</object>
+      <object>objects\obj_button_purple</object>
     </objects>
     <objects name="Particles">
       <object>objects\obj_particle_container</object>
@@ -49,6 +54,7 @@
   <rooms name="rooms">
     <rooms name="concepts">
       <room>rooms\rm_shocker</room>
+      <room>rooms\rm_button_purple</room>
       <room>rooms\rm_puzzle0</room>
       <room>rooms\rm_puzzle1</room>
       <room>rooms\rm_puzzle4</room>
