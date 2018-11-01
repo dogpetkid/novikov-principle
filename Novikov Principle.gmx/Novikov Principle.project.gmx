@@ -10,6 +10,7 @@
     <sprite>sprites\spr_clone</sprite>
     <sprite>sprites\spr_lotus</sprite>
     <sprite>sprites\spr_exit</sprite>
+    <sprite>sprites\spr_shocker</sprite>
     <sprites name="Walls">
       <sprite>sprites\spr_wall</sprite>
       <sprite>sprites\spr_wall_red</sprite>
@@ -21,12 +22,16 @@
   <backgrounds name="background">
     <background>background\background0</background>
   </backgrounds>
-  <paths name="paths"/>
+  <paths name="paths">
+    <path>paths\path0</path>
+    <path>paths\path1</path>
+  </paths>
   <objects name="objects">
     <object>objects\obj_player</object>
     <object>objects\obj_clone</object>
     <object>objects\obj_lotus</object>
     <object>objects\obj_exit</object>
+    <object>objects\obj_shocker</object>
     <objects name="Walls">
       <object>objects\obj_wall</object>
       <object>objects\obj_wall_red</object>
@@ -36,10 +41,14 @@
       <object>objects\obj_button_channels</object>
       <object>objects\obj_button_red</object>
     </objects>
-    <object>objects\obj_particle_deleter</object>
+    <objects name="Particles">
+      <object>objects\obj_particle_container</object>
+      <object>objects\obj_particle_deleter</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_tut0</room>
+    <room>rooms\rm_shocker</room>
     <room>rooms\rm_tut1</room>
     <room>rooms\rm_tut2</room>
     <room>rooms\rm_tut3</room>
