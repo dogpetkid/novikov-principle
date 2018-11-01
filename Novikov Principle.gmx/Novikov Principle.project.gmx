@@ -49,16 +49,19 @@
   <rooms name="rooms">
     <rooms name="concepts">
       <room>rooms\rm_shocker</room>
+      <room>rooms\rm_puzzle0</room>
+      <room>rooms\rm_puzzle1</room>
+      <room>rooms\rm_puzzle4</room>
     </rooms>
     <rooms name="tutorials">
       <room>rooms\rm_tut0</room>
+      <room>rooms\rm_tut1</room>
       <room>rooms\rm_tut2</room>
       <room>rooms\rm_tut3</room>
-      <room>rooms\rm_tut1</room>
       <room>rooms\rm_tut4</room>
     </rooms>
     <rooms name="puzzles">
-      <room>rooms\rm_concept</room>
+      <room>rooms\rm_original</room>
     </rooms>
   </rooms>
   <help>
