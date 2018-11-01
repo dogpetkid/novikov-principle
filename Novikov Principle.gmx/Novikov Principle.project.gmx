@@ -47,13 +47,19 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_tut0</room>
-    <room>rooms\rm_shocker</room>
-    <room>rooms\rm_tut1</room>
-    <room>rooms\rm_tut2</room>
-    <room>rooms\rm_tut3</room>
-    <room>rooms\rm_tut4</room>
-    <room>rooms\rm_concept</room>
+    <rooms name="concepts">
+      <room>rooms\rm_shocker</room>
+    </rooms>
+    <rooms name="tutorials">
+      <room>rooms\rm_tut0</room>
+      <room>rooms\rm_tut2</room>
+      <room>rooms\rm_tut3</room>
+      <room>rooms\rm_tut1</room>
+      <room>rooms\rm_tut4</room>
+    </rooms>
+    <rooms name="puzzles">
+      <room>rooms\rm_concept</room>
+    </rooms>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
