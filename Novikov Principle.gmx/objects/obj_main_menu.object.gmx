@@ -160,9 +160,17 @@ y2play = y1play + string_height(tplay);
 if (mouse_check_button_pressed(mb_left) &amp;&amp; 
 point_in_rectangle(mouse_x,mouse_y,x1play,y1play,x2play,y2play)) {
     
-    room_goto(rm_tut0);
-    
+    // holding shift does the developer shortcut to the concept levels
+    // (otherwise unaccessable)
+    if (keyboard_check(vk_shift)) {
+        room_goto(rm_concept_push);
     }
+    // proceed to next room normally (in a majority of cases)
+    else {
+        room_goto(rm_tut0);
+    }
+    
+}
 </string>
           </argument>
         </arguments>
