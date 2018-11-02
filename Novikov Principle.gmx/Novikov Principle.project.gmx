@@ -23,11 +23,15 @@
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
+    <background>background\bkg_menu</background>
   </backgrounds>
   <paths name="paths">
     <path>paths\path0</path>
     <path>paths\path1</path>
   </paths>
+  <fonts name="fonts">
+    <font>fonts\fnt_menu</font>
+  </fonts>
   <objects name="objects">
     <object>objects\obj_player</object>
     <object>objects\obj_clone</object>
@@ -50,8 +54,14 @@
       <object>objects\obj_particle_container</object>
       <object>objects\obj_particle_deleter</object>
     </objects>
+    <objects name="Menu">
+      <object>objects\obj_main_menu</object>
+    </objects>
   </objects>
   <rooms name="rooms">
+    <rooms name="menus">
+      <room>rooms\rm_main_menu</room>
+    </rooms>
     <rooms name="concepts">
       <room>rooms\rm_shocker</room>
       <room>rooms\rm_button_purple</room>
