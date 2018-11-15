@@ -65,6 +65,8 @@
     </rooms>
     <rooms name="concepts">
       <room>rooms\rm_concept_push</room>
+      <room>rooms\rm_puzzle7</room>
+      <room>rooms\rm_puzzle8</room>
       <room>rooms\rm_shocker</room>
       <room>rooms\rm_button_purple</room>
       <room>rooms\rm_puzzle5</room>
