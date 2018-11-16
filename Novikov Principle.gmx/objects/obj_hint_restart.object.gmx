@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>(when hint is spawned)</string>
+            <string>Hint should be rendered when</string>
           </argument>
         </arguments>
       </action>
@@ -45,7 +45,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Always render the direction controls</string>
+            <string>player is stuck near a button for over 5 seconds</string>
           </argument>
         </arguments>
       </action>
@@ -65,7 +65,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>render = true;
+            <string>render = false;
 </string>
           </argument>
         </arguments>
@@ -106,15 +106,206 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// create anchors for the WASD and Arrow keys button sets
+            <string>// create anchors for center 0 (zero) button
 
-//upper left of the W button
-x_wasd = room_width/2-250;
-y_wasd = room_height/10;
+x_zero = room_width/2 - sprite_get_width(spr_key_plain);
+y_zero = room_height/10;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>create stuck variables</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// marks if the player is stuck near a button
+// (assume they are traped)
+stuck_button = false;
 
-//upper left of the UP button
-x_arrow = room_width/2+150;
-y_arrow = y_wasd; // mimic the same y value
+// marks if the player is stuck inside a wall
+// (they are trapped)
+stuck_wall = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>When the player is near a button...</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>assume they are stuck (and need to restart)</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>render = true;
+alarm[0] = -1; // stop alarm
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Check if player is stuck</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// if the player is stuck near a button for 5 seconds
+// OR
+// if the player is stuck in the wall
+// display the restart room button
+
+// this logic is done by seting a timer to 5*room_speed every tick
+// while the player is not near a button
+
+
+
+with (obj_player) {
+
+    if (
+    5 &lt; distance_to_object( // check if further than 5 away from...
+    instance_nearest(self.x,self.y,obj_button_red) // the nearest red button...
+    ))
+    {
+    // then player not trapped
+    with (obj_hint_restart) stuck_button = false;
+    } else {
+    // else player is trapped
+    with (obj_hint_restart) stuck_button = true;
+    }
+
+}
+
+// AND if the player is stuck in a wall, tell them how to restart
+
+with (obj_player) {
+
+    if (!place_free(self.x,self.y)) { // if within a wall (or any solid object)...
+    // them mark stuck in wall
+    with (obj_hint_restart) stuck_wall = true;
+    } else {
+    with (obj_hint_restart) stuck_wall = false;
+    }
+
+}
+
+// keep pushing the timer up until they are stuck
+if (!stuck_button) alarm[0] = 7*room_speed;
+// wall stuck is a given to just restart
+if (stuck_wall) render = true;
 </string>
           </argument>
         </arguments>
@@ -137,7 +328,7 @@ y_arrow = y_wasd; // mimic the same y value
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Render WASD</string>
+            <string>Render 0 (ZERO)</string>
           </argument>
         </arguments>
       </action>
@@ -159,133 +350,18 @@ y_arrow = y_wasd; // mimic the same y value
             <kind>1</kind>
             <string>if (render) {
 
-    // be sure to use the proper font for the buttons
+    // be sure to use the proper font for the button
     draw_set_font(fnt_keys);
     // alaign text to center
     draw_set_halign(fa_center);
     // change color of text to black
     draw_set_colour(c_black);
-    
-    // get text shifted center
-    x_text = x_wasd+32;
-    y_text = y_wasd+16;
 
-    // W button
-    draw_sprite(spr_key_plain,0,x_wasd,y_wasd);
-    draw_text(x_text,y_text,"W");
-    // S button
-    draw_sprite(spr_key_plain,0,x_wasd,y_wasd+96);
-    draw_text(x_text,y_text+96,"S");
-    // A button
-    draw_sprite(spr_key_plain,0,x_wasd-96,y_wasd+96);
-    draw_text(x_text-96,y_text+96,"A");
-    // D button
-    draw_sprite(spr_key_plain,0,x_wasd+96,y_wasd+96);
-    draw_text(x_text+96,y_text+96,"D");
-
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>605</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>Render OR</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (render) {
-
-    // be sure to use the proper font for the OR
-    draw_set_font(fnt_keys);
-    // alaign text to center
-    draw_set_halign(fa_center);
-    // change color of text to black
-    draw_set_colour(c_black);
-    
-    draw_text((x_wasd+x_arrow)/2 +32,y_wasd +32,"OR");
-
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>605</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>Render arrows</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (render) {
-
-    // UP button
-    draw_sprite(spr_key_arrow,0,x_arrow,y_arrow);
-    // DOWN button
-    draw_sprite(spr_key_arrow,2,x_arrow,y_arrow+96);
-    // LEFT button
-    draw_sprite(spr_key_arrow,1,x_arrow-96,y_arrow+96);
-    // RIGHT button
-    draw_sprite(spr_key_arrow,3,x_arrow+96,y_arrow+96);
+    // ZERO button
+    draw_sprite(spr_key_plain,0,x_zero,y_zero);
+    draw_text(x_zero+32,y_zero+16,"0");
+    // +32 to shift from left to center
+    // +16 to shift from top to upper (so the actual number is centered)
 
 }
 </string>

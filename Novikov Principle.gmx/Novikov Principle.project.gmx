@@ -68,6 +68,7 @@
     <objects name="Hint Keys">
       <object>objects\obj_hint_directions</object>
       <object>objects\obj_hint_jump</object>
+      <object>objects\obj_hint_restart</object>
     </objects>
   </objects>
   <rooms name="rooms">
