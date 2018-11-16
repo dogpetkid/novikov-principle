@@ -179,8 +179,18 @@ y_space = room_height/20;
             <kind>1</kind>
             <string>if (render) {
 
+    // be sure to use the proper font for the button
+    draw_set_font(fnt_keys);
+    // alaign text to center
+    draw_set_halign(fa_center);
+    // change color of text to black
+    draw_set_colour(c_black);
+
     // SPACE button
     draw_sprite(spr_key_space,0,x_space,y_space);
+    draw_text(x_space+sprite_get_width(spr_key_space)/2,y_space+16,"Space");
+    // text is shifted to the center of the space bar
+    // +16 to shift from top to upper (so the text is centered)
 
 }
 </string>
