@@ -75,15 +75,17 @@
     <rooms name="menus">
       <room>rooms\rm_main_menu</room>
     </rooms>
+    <rooms name="challenges / scraps">
+      <room>rooms\rm_challenge1</room>
+      <room>rooms\rm_challenge2</room>
+      <room>rooms\rm_challenge3</room>
+    </rooms>
     <rooms name="concepts">
       <room>rooms\rm_concept_push</room>
-      <room>rooms\rm_tut5</room>
+      <room>rooms\rm_tut7</room>
       <room>rooms\rm_shocker</room>
       <room>rooms\rm_button_purple</room>
-      <room>rooms\rm_puzzle5</room>
-      <room>rooms\rm_puzzle6</room>
       <room>rooms\rm_puzzle7</room>
-      <room>rooms\rm_puzzle8</room>
     </rooms>
     <rooms name="tutorials">
       <room>rooms\rm_tut0</room>
@@ -95,7 +97,10 @@
     <rooms name="puzzles">
       <room>rooms\rm_puzzle0</room>
       <room>rooms\rm_puzzle1</room>
-      <room>rooms\rm_puzzle4</room>
+      <room>rooms\rm_puzzle2</room>
+      <room>rooms\rm_tut5</room>
+      <room>rooms\rm_tut6</room>
+      <room>rooms\rm_puzzle3</room>
       <room>rooms\rm_original</room>
     </rooms>
   </rooms>
