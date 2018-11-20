@@ -48,6 +48,8 @@
             <string>// change in motion is 0
 dx = 0;
 dy = 0;
+prevdx = 0;
+prevdy = 0;
 
 // start with 0 previous motion
 prevdx = 0;
@@ -562,7 +564,7 @@ if (keyboard_check_pressed(vk_space) &amp;&amp; clone_running) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Collision &amp; Movement</string>
+            <string>Collision</string>
           </argument>
         </arguments>
       </action>
@@ -583,6 +585,22 @@ if (keyboard_check_pressed(vk_space) &amp;&amp; clone_running) {
           <argument>
             <kind>1</kind>
             <string>// don't go into walls
+
+// if the player was to go into a corner of a block, prevent this and
+// keep him sliding
+    // player must be moving in both directions
+if (dx!=0 &amp;&amp; dy!=0 &amp;&amp;
+    // player must be at the corner of the block
+    // (it is where a player may go either direction however
+    place_free(self.x+dx,self.y) &amp;&amp; place_free(self.x,self.y+dy) &amp;&amp;
+    // doing both makes go in the wall)
+    !place_free(self.x+dx,self.y+dy)) {
+    
+    dx = prevdx;
+    dy = prevdy;
+    show_debug_message("Corner collision");
+    
+}
 
 // horizontal snap onto solid
 // if player is going to move into a solid in the x direction...
@@ -614,9 +632,10 @@ if (dy!=0 &amp;&amp; !place_free(self.x,self.y+dy)) {
 
 }
 
-// move after snapping to walls
-self.x+=dx
-self.y+=dy
+
+// movement will now occur after the waypoint is set
+//self.x+=dx
+//self.y+=dy
 </string>
           </argument>
         </arguments>
@@ -706,6 +725,53 @@ if ( (prevdx!=dx || prevdy!=dy) &amp;&amp; (clone_spawning || clone_running) ) {
 // save dx and dy for next iteration of step
 prevdx=dx;
 prevdy=dy;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Motion</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// movement occurs after the waypoint is set so if the player makes a u-turn in
+// as 64 pixel tunnel while on the bottom, they can slide on the top safely
+
+self.x+=dx;
+self.y+=dy;
+prevdx =dx;
+prevdy =dy;
 </string>
           </argument>
         </arguments>
