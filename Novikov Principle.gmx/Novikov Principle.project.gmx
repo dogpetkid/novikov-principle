@@ -35,6 +35,10 @@
     <path>paths\path0</path>
     <path>paths\path1</path>
   </paths>
+  <scripts name="scripts">
+    <script>scripts\scp_render_button.gml</script>
+    <script>scripts\scp_button_pressed.gml</script>
+  </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_menu</font>
     <font>fonts\fnt_keys</font>
@@ -64,6 +68,7 @@
     <objects name="Menu">
       <object>objects\obj_main_menu</object>
       <object>objects\obj_skip_room</object>
+      <object>objects\obj_level_select</object>
     </objects>
     <objects name="Hint Keys">
       <object>objects\obj_hint_directions</object>
@@ -74,6 +79,7 @@
   <rooms name="rooms">
     <rooms name="menus">
       <room>rooms\rm_main_menu</room>
+      <room>rooms\rm_level_select</room>
     </rooms>
     <rooms name="challenges / scraps">
       <room>rooms\rm_challenge1</room>

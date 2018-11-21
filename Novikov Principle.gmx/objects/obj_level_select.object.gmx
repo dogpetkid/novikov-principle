@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>define anchors and colors</string>
+            <string>prepare clickboxes for level select elements</string>
           </argument>
         </arguments>
       </action>
@@ -46,9 +46,6 @@
           <argument>
             <kind>1</kind>
             <string>// define anchors
-
-htitle = 1/2*room_width;
-vtitle = 1/4*room_height;
 
 hanchor = 1/2*room_width;
 vanchor = 1/2*room_height;
@@ -78,7 +75,7 @@ c_clone = $8000b7;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>prepare clickboxes for menu elements</string>
+            <string>prepare anchors and colors</string>
           </argument>
         </arguments>
       </action>
@@ -102,21 +99,44 @@ c_clone = $8000b7;
 
 draw_set_font(fnt_menu);
 
-// Play (or Hub)
-// points are relative
-tplay = "Play";
-x1play = hanchor - string_width(tplay)/2;
-y1play = vanchor;
-x2play = x1play + string_width(tplay);
-y2play = y1play + string_height(tplay);
+// Back
+tback = "back";
+x1back = 0.1*room_width;
+y1back = 0.85*room_height;
+x2back = x1back + string_width(tback);
+y2back = y1back + string_height(tback);
 
-// Level Select
-// points are relative
-tlevel = "Level Select";
-x1level = hanchor - string_width(tlevel)/2;
-y1level = y1play + 1.5*string_height(tplay); // to be shifted under the play
-x2level = x1level + string_width(tlevel);
-y2level = y1level + string_height(tlevel);
+// Tutorial
+ttut = "Tutorial";
+x1tut = 1/2 * hanchor - string_width(ttut)/2; // shift over to the (upper) left
+y1tut = 1/2 * vanchor; // shift over to the upper (left)
+x2tut = x1tut + string_width(ttut);
+y2tut = y1tut + string_height(ttut);
+
+// Buttons
+tbut = "Buttons";
+x1but = 1/2 * hanchor - string_width(tbut)/2; // shift over to the left
+y1but = y1tut + 1.5*string_height(ttut);
+x2but = x1but + string_width(tbut);
+y2but = y1but + string_height(tbut);
+
+// Pixel Perfect
+tpp = "Pixel Perfect";
+x1pp = 1/2 * hanchor - string_width(tpp)/2; // shift over to the left
+y1pp = y1but + 1.5*string_height(tbut);
+x2pp = x1pp + string_width(tpp);
+y2pp = y1pp + string_height(tpp);
+
+// Extended (Pixel) Perfect
+
+
+
+// More soon
+tmore = "More soon";
+x1more = 3/2 * hanchor - string_width(tpp)/2;
+y1more = y1pp; // looks cleaner aligned with Pixel Perfect
+x2more = x1more + string_width(tmore);
+y2more = y1more + string_height(tmore);
 </string>
           </argument>
         </arguments>
@@ -159,32 +179,38 @@ y2level = y1level + string_height(tlevel);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// check for clicking inside clickboxes
+            <string>// check for clicking inside boxes
 
 // scp_button_pressed(x1,y1,x2,y2);
 
-// Play (or hub)
-if (scp_button_pressed(x1play,y1play,x2play,y2play)) {
-    
-    // holding shift does the developer shortcut to the concept levels
-    // (otherwise unaccessable)
-    if (keyboard_check(vk_shift)) {
-        room_goto(rm_concept_push);
-    }
-    // proceed to next room normally (in a majority of cases)
-    else {
-        room_goto(rm_tut0);
-    }
-    
+
+// back
+if(scp_button_pressed(x1back,y1back,x2back,y2back)) {
+
+    room_goto(rm_main_menu);
+
 }
 
+// Tutorial
+if(scp_button_pressed(x1tut,y1tut,x2tut,y2tut)) {
 
-// Level Select
-if (scp_button_pressed(x1level,y1level,x2level,y2level)) {
-    
-    // move to level select room
-    room_goto(rm_level_select);
-    
+    room_goto(rm_tut0);
+
+}
+
+// Button
+
+if(scp_button_pressed(x1but,y1but,x2but,y2but)) {
+
+    room_goto(rm_tut4);
+
+}
+
+// Pixel Perfect
+if(scp_button_pressed(x1pp,y1pp,x2pp,y2pp)) {
+
+    room_goto(rm_tut5);
+
 }
 </string>
           </argument>
@@ -208,7 +234,7 @@ if (scp_button_pressed(x1level,y1level,x2level,y2level)) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw title</string>
+            <string>set constant drawing variables</string>
           </argument>
         </arguments>
       </action>
@@ -228,15 +254,8 @@ if (scp_button_pressed(x1level,y1level,x2level,y2level)) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// draw title
-
-draw_set_font(fnt_menu);
-draw_set_halign(fa_center);
-
-
-draw_text_colour(htitle,vtitle,"Novikov Principle",
-// color it with the bottom right being purple
-c_normal,c_normal,c_clone,c_normal,1);
+            <string>draw_set_font(fnt_menu);
+draw_set_halign(fa_left);
 </string>
           </argument>
         </arguments>
@@ -257,7 +276,7 @@ c_normal,c_normal,c_clone,c_normal,1);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw menu elements</string>
+            <string>draw level sections</string>
           </argument>
         </arguments>
       </action>
@@ -277,30 +296,25 @@ c_normal,c_normal,c_clone,c_normal,1);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// draw menu elements
+            <string>// render all the buttons
 
-draw_set_font(fnt_menu);
-draw_set_halign(fa_left);
+//scp_render_button(x1,y1,x2,y2,text,c_hovered,c_normal)
 
+// back
+scp_render_button(x1back,y1back,x2back,y2back,tback,c_clone,c_black);
 
-// Play (or hub)
+// Tutorial
+scp_render_button(x1tut,y1tut,x2tut,y2tut,ttut,c_clone,c_normal);
 
-// if mouse on button then light it up
-if (point_in_rectangle(mouse_x,mouse_y,x1play,y1play,x2play,y2play))
-    draw_set_colour(c_clone);
-else
-    draw_set_colour(c_normal);
-draw_text(x1play,y1play,tplay);
+// IDEA: have the sections be blocked red until you can go to them
+// Button
+scp_render_button(x1but,y1but,x2but,y2but,tbut,c_clone,c_normal);
 
+// Pixel Perfect
+scp_render_button(x1pp,y1pp,x2pp,y2pp,tpp,c_clone,c_normal);
 
-// Level select
-
-// if mouse on button then light it up
-if (point_in_rectangle(mouse_x,mouse_y,x1level,y1level,x2level,y2level))
-    draw_set_colour(c_clone);
-else
-    draw_set_colour(c_normal);
-draw_text(x1level,y1level,tlevel);
+// More soon
+scp_render_button(x1more,y1more,x2more,y2more,tmore,c_normal,c_normal);
 </string>
           </argument>
         </arguments>
