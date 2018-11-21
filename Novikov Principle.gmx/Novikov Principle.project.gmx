@@ -82,7 +82,6 @@
     </rooms>
     <rooms name="concepts">
       <room>rooms\rm_concept_push</room>
-      <room>rooms\rm_tut7</room>
       <room>rooms\rm_shocker</room>
       <room>rooms\rm_button_purple</room>
       <room>rooms\rm_puzzle7</room>
@@ -101,6 +100,9 @@
       <room>rooms\rm_tut5</room>
       <room>rooms\rm_tut6</room>
       <room>rooms\rm_puzzle3</room>
+      <room>rooms\rm_puzzle4</room>
+      <room>rooms\rm_puzzle5</room>
+      <room>rooms\rm_tut7</room>
       <room>rooms\rm_original</room>
     </rooms>
   </rooms>
