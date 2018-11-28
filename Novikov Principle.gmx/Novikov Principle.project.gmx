@@ -44,11 +44,15 @@
     <font>fonts\fnt_keys</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_player</object>
-    <object>objects\obj_clone</object>
-    <object>objects\obj_lotus</object>
-    <object>objects\obj_exit</object>
-    <object>objects\obj_shocker</object>
+    <objects name="Main">
+      <object>objects\obj_player</object>
+      <object>objects\obj_clone</object>
+      <object>objects\obj_lotus</object>
+      <object>objects\obj_exit</object>
+    </objects>
+    <objects name="Extras">
+      <object>objects\obj_shocker</object>
+    </objects>
     <objects name="Walls">
       <object>objects\obj_wall</object>
       <object>objects\obj_wall_red</object>
@@ -100,18 +104,24 @@
       <room>rooms\rm_tut4</room>
     </rooms>
     <rooms name="puzzles">
-      <room>rooms\rm_puzzle0</room>
-      <room>rooms\rm_puzzle1</room>
-      <room>rooms\rm_puzzle2</room>
-      <room>rooms\rm_tut5</room>
-      <room>rooms\rm_tut6</room>
-      <room>rooms\rm_puzzle4</room>
-      <room>rooms\rm_tut7</room>
-      <room>rooms\rm_puzzle5</room>
-      <room>rooms\rm_puzzle6</room>
-      <room>rooms\rm_puzzle7</room>
-      <room>rooms\rm_puzzle8</room>
-      <room>rooms\rm_puzzle9</room>
+      <rooms name="Buttons">
+        <room>rooms\rm_puzzle0</room>
+        <room>rooms\rm_puzzle1</room>
+        <room>rooms\rm_puzzle2</room>
+      </rooms>
+      <rooms name="Pixel Perfect">
+        <room>rooms\rm_tut5</room>
+        <room>rooms\rm_tut6</room>
+        <room>rooms\rm_puzzle4</room>
+        <room>rooms\rm_tut7</room>
+        <room>rooms\rm_puzzle5</room>
+      </rooms>
+      <rooms name="Extended (Pixel) Perfect">
+        <room>rooms\rm_puzzle6</room>
+        <room>rooms\rm_puzzle7</room>
+        <room>rooms\rm_puzzle8</room>
+        <room>rooms\rm_puzzle9</room>
+      </rooms>
       <room>rooms\rm_original</room>
     </rooms>
   </rooms>
