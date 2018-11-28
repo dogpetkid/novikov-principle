@@ -128,7 +128,11 @@ x2pp = x1pp + string_width(tpp);
 y2pp = y1pp + string_height(tpp);
 
 // Extended (Pixel) Perfect
-
+tep = "Extended Perfect";
+x1ep = 1/2 * hanchor - string_width(tep)/2; // shift over to the left
+y1ep = y1pp + 1.5*string_height(tpp);
+x2ep = x1ep + string_width(tep);
+y2ep = y1ep + string_height(tep);
 
 
 // More soon
@@ -210,6 +214,13 @@ if(scp_button_pressed(x1but,y1but,x2but,y2but)) {
 if(scp_button_pressed(x1pp,y1pp,x2pp,y2pp)) {
 
     room_goto(rm_tut5);
+
+}
+
+// Extended (pixel) Perfect
+if(scp_button_pressed(x1ep,y1ep,x2ep,y2ep)) {
+
+    room_goto(rm_puzzle6);
 
 }
 </string>
@@ -312,6 +323,9 @@ scp_render_button(x1but,y1but,x2but,y2but,tbut,c_clone,c_normal);
 
 // Pixel Perfect
 scp_render_button(x1pp,y1pp,x2pp,y2pp,tpp,c_clone,c_normal);
+
+// Extended (Pixel) Perfect
+scp_render_button(x1ep,y1ep,x2ep,y2ep,tep,c_clone,c_normal);
 
 // More soon
 scp_render_button(x1more,y1more,x2more,y2more,tmore,c_normal,c_normal);
