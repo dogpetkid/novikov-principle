@@ -121,6 +121,52 @@ y2level = y1level + string_height(tlevel);
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>create level list</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// provide a list of all "benchmark" levels for sections for all objects to use
+global.ltut = rm_tut0;
+global.lbut = rm_tut4;
+global.lpp = rm_tut5;
+global.lep = rm_puzzle6;
+global.b2 = rm_tut8;
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="3" enumb="0">
       <action>
@@ -171,9 +217,19 @@ if (scp_button_pressed(x1play,y1play,x2play,y2play)) {
     if (keyboard_check(vk_shift)) {
         room_goto(rm_concept_push);
     }
+    /*
     // proceed to next room normally (in a majority of cases)
     else {
         room_goto(rm_tut0);
+    }
+    */
+    // proceed to room that was last opened
+    else {
+        ini_open("save.ini");
+        // if no last room was opened, goto first tutorial
+        play_room = ini_read_real("options","play",rm_tut0);
+        ini_close();
+        room_goto(play_room);
     }
     
 }

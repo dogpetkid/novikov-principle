@@ -25,6 +25,73 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>save room to ini</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// Current room so that when the "Play" button is pressed,
+// you continue from the room you were in last
+
+ini_open("save.ini");
+ini_write_real("options","play",room);
+
+// list levels
+ltut = global.ltut;
+lbut = global.lbut;
+lpp = global.lpp;
+lep = global.lep;
+lb2 = global.b2;
+
+// save if player gets to a section
+if (room == lbut)
+ini_write_real("levels","but",lbut);
+
+if (room == lpp)
+ini_write_real("levels","pp",lpp);
+
+if (room == lep)
+ini_write_real("levels","ep",lep);
+
+if (room == lb2)
+ini_write_real("levels","b2",lb2);
+
+ini_close();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>initialize movement variables</string>
           </argument>
         </arguments>

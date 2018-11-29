@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>prepare clickboxes for level select elements</string>
+            <string>prepare clickboxes for elements &amp; colors</string>
           </argument>
         </arguments>
       </action>
@@ -55,6 +55,7 @@ vanchor = 1/2*room_height;
 
 c_normal = $808080;
 c_clone = $8000b7;
+c_locked = $0000ff;
 </string>
           </argument>
         </arguments>
@@ -75,7 +76,52 @@ c_clone = $8000b7;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>prepare anchors and colors</string>
+            <string>list levels</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>ltut = global.ltut;
+lbut = global.lbut;
+lpp = global.lpp;
+lep = global.lep;
+lb2 = global.b2;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>prepare anchors</string>
           </argument>
         </arguments>
       </action>
@@ -194,10 +240,13 @@ y2more = y1more + string_height(tmore);
 
 // scp_button_pressed(x1,y1,x2,y2);
 
+// allow the 
+ini_open("save.ini");
+
 
 // back
 if(scp_button_pressed(x1back,y1back,x2back,y2back)) {
-
+    
     room_goto(rm_main_menu);
 
 }
@@ -205,38 +254,48 @@ if(scp_button_pressed(x1back,y1back,x2back,y2back)) {
 // Tutorial
 if(scp_button_pressed(x1tut,y1tut,x2tut,y2tut)) {
 
-    room_goto(rm_tut0);
+    
+    room_goto(ltut);
 
 }
 
+
+
+// make sure the player has been to that section for all sections below
+
 // Button
-
 if(scp_button_pressed(x1but,y1but,x2but,y2but)) {
-
-    room_goto(rm_tut4);
+    
+    if (lbut == ini_read_real("levels","but",0))
+    room_goto(lbut);
 
 }
 
 // Pixel Perfect
 if(scp_button_pressed(x1pp,y1pp,x2pp,y2pp)) {
 
-    room_goto(rm_tut5);
+    if (lpp == ini_read_real("levels","pp",0))
+    room_goto(lpp);
 
 }
 
 // Extended (pixel) Perfect
 if(scp_button_pressed(x1ep,y1ep,x2ep,y2ep)) {
-
-    room_goto(rm_puzzle6);
+    
+    if (lep == ini_read_real("levels","ep",0))
+    room_goto(lep);
 
 }
 
 // Buttons 2
 if(scp_button_pressed(x1b2,y1b2,x2b2,y2b2)) {
 
-    room_goto(rm_tut8);
+    if (lb2 == ini_read_real("levels","b2",0))
+    room_goto(lb2);
 
 }
+
+ini_close();
 </string>
           </argument>
         </arguments>
@@ -325,29 +384,46 @@ draw_set_halign(fa_left);
 
 //scp_render_button(x1,y1,x2,y2,text,c_hovered,c_normal)
 
+ini_open("save.ini");
+
 // back
 scp_render_button(x1back,y1back,x2back,y2back,tback,c_clone,c_black);
 
 // Tutorial
 scp_render_button(x1tut,y1tut,x2tut,y2tut,ttut,c_clone,c_normal);
 
-// IDEA: have the sections be blocked red until you can go to them
-// Button
-scp_render_button(x1but,y1but,x2but,y2but,tbut,c_clone,c_normal);
-
-// Pixel Perfect
-scp_render_button(x1pp,y1pp,x2pp,y2pp,tpp,c_clone,c_normal);
-
-// Extended (Pixel) Perfect
-scp_render_button(x1ep,y1ep,x2ep,y2ep,tep,c_clone,c_normal);
-
-// Buttons 2
-scp_render_button(x1b2,y1b2,x2b2,y2b2,tb2,c_clone,c_normal);
-
-
-
 // More soon
 scp_render_button(x1more,y1more,x2more,y2more,tmore,c_normal,c_normal);
+
+
+
+// Sections below all are red when the are locked
+// Button
+if (lbut == ini_read_real("levels","but",0))
+scp_render_button(x1but,y1but,x2but,y2but,tbut,c_clone,c_normal);
+else
+scp_render_button(x1but,y1but,x2but,y2but,tbut,c_locked,c_locked);
+
+// Pixel Perfect
+if (lpp == ini_read_real("levels","pp",0))
+scp_render_button(x1pp,y1pp,x2pp,y2pp,tpp,c_clone,c_normal);
+else
+scp_render_button(x1pp,y1pp,x2pp,y2pp,tpp,c_locked,c_locked);
+
+// Extended (Pixel) Perfect
+if (lep == ini_read_real("levels","ep",0))
+scp_render_button(x1ep,y1ep,x2ep,y2ep,tep,c_clone,c_normal);
+else
+scp_render_button(x1ep,y1ep,x2ep,y2ep,tep,c_locked,c_locked);
+
+
+// Buttons 2
+if (lb2 == ini_read_real("levels","b2",0))
+scp_render_button(x1b2,y1b2,x2b2,y2b2,tb2,c_clone,c_normal);
+else
+scp_render_button(x1b2,y1b2,x2b2,y2b2,tb2,c_locked,c_locked);
+
+ini_close();
 </string>
           </argument>
         </arguments>
