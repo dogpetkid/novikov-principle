@@ -55,52 +55,9 @@ vanchor = 1/2*room_height;
 
 c_normal = $808080;
 c_clone = $8000b7;
-c_locked = $0000ff;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>605</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>list levels</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>ltut = global.ltut;
-lbut = global.lbut;
-lpp = global.lpp;
-lep = global.lep;
-lb2 = global.b2;
+c_warning = $0000ff;
+c_fulloff = $0000ff;
+c_fullon = $00ff00;
 </string>
           </argument>
         </arguments>
@@ -152,48 +109,19 @@ y1back = 0.85*room_height;
 x2back = x1back + string_width(tback);
 y2back = y1back + string_height(tback);
 
-// Tutorial
-ttut = "Tutorial";
-x1tut = 1/2 * hanchor - string_width(ttut)/2; // shift over to the (upper) left
-y1tut = 1/2 * vanchor; // shift over to the upper (left)
-x2tut = x1tut + string_width(ttut);
-y2tut = y1tut + string_height(ttut);
+// Remove save data
+tdel = "Delete save data";
+x1del = 1/2 * hanchor - string_width(tdel)/2; // shift over to the (upper) left
+y1del = 1/2 * vanchor; // shift over to the upper (left)
+x2del = x1del + string_width(tdel);
+y2del = y1del + string_height(tdel);
 
-// Buttons
-tbut = "Buttons";
-x1but = 1/2 * hanchor - string_width(tbut)/2; // shift over to the left
-y1but = y1tut + 1.5*string_height(ttut);
-x2but = x1but + string_width(tbut);
-y2but = y1but + string_height(tbut);
-
-// Pixel Perfect
-tpp = "Pixel Perfect";
-x1pp = 1/2 * hanchor - string_width(tpp)/2; // shift over to the left
-y1pp = y1but + 1.5*string_height(tbut);
-x2pp = x1pp + string_width(tpp);
-y2pp = y1pp + string_height(tpp);
-
-// Extended (Pixel) Perfect
-tep = "Extended Perfect";
-x1ep = 1/2 * hanchor - string_width(tep)/2; // shift over to the left
-y1ep = y1pp + 1.5*string_height(tpp);
-x2ep = x1ep + string_width(tep);
-y2ep = y1ep + string_height(tep);
-
-// Extended (Pixel) Perfect
-tb2 = "Buttons 2";
-x1b2 = 1/2 * hanchor - string_width(tb2)/2; // shift over to the left
-y1b2 = y1ep + 1.5*string_height(tep);
-x2b2 = x1b2 + string_width(tb2);
-y2b2 = y1b2 + string_height(tb2);
-
-
-// More soon
-tmore = "More soon";
-x1more = 3/2 * hanchor - string_width(tpp)/2;
-y1more = y1pp; // looks cleaner aligned with Pixel Perfect
-x2more = x1more + string_width(tmore);
-y2more = y1more + string_height(tmore);
+// Fullscreen
+tful = "Fullscreen";
+x1ful = 1/2 * hanchor - string_width(tful)/2;
+y1ful = y1del + 1.5*string_height(tdel); // shift under Remove save data
+x2ful = x1ful + string_width(tful);
+y2ful = y1ful + string_height(tful);
 </string>
           </argument>
         </arguments>
@@ -240,10 +168,6 @@ y2more = y1more + string_height(tmore);
 
 // scp_button_pressed(x1,y1,x2,y2);
 
-// allow the 
-ini_open("save.ini");
-
-
 // back
 if(scp_button_pressed(x1back,y1back,x2back,y2back) || 
    keyboard_check_pressed(vk_escape)) {
@@ -252,51 +176,36 @@ if(scp_button_pressed(x1back,y1back,x2back,y2back) ||
 
 }
 
-// Tutorial
-if(scp_button_pressed(x1tut,y1tut,x2tut,y2tut)) {
+// Delete save data
+if(scp_button_pressed(x1del,y1del,x2del,y2del)) {
 
+    if (show_question("Are you sure you want to delete your save data?")) {
+        ini_open("save.ini");
+        // levels stores all the saved progress data
+        ini_section_delete("levels");
+        ini_close();
+        show_message("Data deleted.");
+    } else {
+        show_message("Data preserved.");
+    }
     
-    room_goto(ltut);
-
-}
-
-
-
-// make sure the player has been to that section for all sections below
-
-// Button
-if(scp_button_pressed(x1but,y1but,x2but,y2but)) {
+    // Restore fullscreen if broken
+    scp_fix_fullscreen();
     
-    if (lbut == ini_read_real("levels","but",0))
-    room_goto(lbut);
 
 }
 
-// Pixel Perfect
-if(scp_button_pressed(x1pp,y1pp,x2pp,y2pp)) {
-
-    if (lpp == ini_read_real("levels","pp",0))
-    room_goto(lpp);
-
-}
-
-// Extended (pixel) Perfect
-if(scp_button_pressed(x1ep,y1ep,x2ep,y2ep)) {
+// Fullscreen
+if(scp_button_pressed(x1ful,y1ful,x2ful,y2ful)) {
     
-    if (lep == ini_read_real("levels","ep",0))
-    room_goto(lep);
+    // toggle window setting
+    window_set_fullscreen(!window_get_fullscreen());
+    ini_open("save.ini");
+    // save setting
+    ini_write_real("options","fullscreen",window_get_fullscreen());
+    ini_close();
 
 }
-
-// Buttons 2
-if(scp_button_pressed(x1b2,y1b2,x2b2,y2b2)) {
-
-    if (lb2 == ini_read_real("levels","b2",0))
-    room_goto(lb2);
-
-}
-
-ini_close();
 </string>
           </argument>
         </arguments>
@@ -385,46 +294,17 @@ draw_set_halign(fa_left);
 
 //scp_render_button(x1,y1,x2,y2,text,c_hovered,c_normal)
 
-ini_open("save.ini");
-
 // back
 scp_render_button(x1back,y1back,x2back,y2back,tback,c_clone,c_black);
 
-// Tutorial
-scp_render_button(x1tut,y1tut,x2tut,y2tut,ttut,c_clone,c_normal);
+// Delete save data
+scp_render_button(x1del,y1del,x2del,y2del,tdel,c_warning,c_normal);
 
-// More soon
-scp_render_button(x1more,y1more,x2more,y2more,tmore,c_normal,c_normal);
-
-
-
-// Sections below all are red when the are locked
-// Button
-if (lbut == ini_read_real("levels","but",0))
-scp_render_button(x1but,y1but,x2but,y2but,tbut,c_clone,c_normal);
-else
-scp_render_button(x1but,y1but,x2but,y2but,tbut,c_locked,c_locked);
-
-// Pixel Perfect
-if (lpp == ini_read_real("levels","pp",0))
-scp_render_button(x1pp,y1pp,x2pp,y2pp,tpp,c_clone,c_normal);
-else
-scp_render_button(x1pp,y1pp,x2pp,y2pp,tpp,c_locked,c_locked);
-
-// Extended (Pixel) Perfect
-if (lep == ini_read_real("levels","ep",0))
-scp_render_button(x1ep,y1ep,x2ep,y2ep,tep,c_clone,c_normal);
-else
-scp_render_button(x1ep,y1ep,x2ep,y2ep,tep,c_locked,c_locked);
-
-
-// Buttons 2
-if (lb2 == ini_read_real("levels","b2",0))
-scp_render_button(x1b2,y1b2,x2b2,y2b2,tb2,c_clone,c_normal);
-else
-scp_render_button(x1b2,y1b2,x2b2,y2b2,tb2,c_locked,c_locked);
-
-ini_close();
+// Fullscreen
+// change normal color to be green when full and red when not
+if (window_get_fullscreen()) c_temp = c_fullon;
+else c_temp = c_fulloff;
+scp_render_button(x1ful,y1ful,x2ful,y2ful,tful,c_clone,c_temp);
 </string>
           </argument>
         </arguments>

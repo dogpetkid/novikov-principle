@@ -117,6 +117,22 @@ x1level = hanchor - string_width(tlevel)/2;
 y1level = y1play + 1.5*string_height(tplay); // to be shifted under the play
 x2level = x1level + string_width(tlevel);
 y2level = y1level + string_height(tlevel);
+
+// Options
+// points are relative
+toptions = "Options";
+x1options = hanchor - string_width(toptions)/2;
+y1options = y1level + 1.5*string_height(tlevel); // to be shifted under the Level Select
+x2options = x1options + string_width(toptions);
+y2options = y1options + string_height(toptions);
+
+
+// Exit
+texit = "Exit";
+x1exit = hanchor - string_width(texit)/2;
+y1exit = 0.85 * room_height;
+x2exit = x1exit + string_width(texit);
+y2exit = y1exit + string_height(texit);
 </string>
           </argument>
         </arguments>
@@ -227,7 +243,7 @@ if (scp_button_pressed(x1play,y1play,x2play,y2play)) {
     else {
         ini_open("save.ini");
         // if no last room was opened, goto first tutorial
-        play_room = ini_read_real("options","play",rm_tut0);
+        play_room = ini_read_real("levels","play",rm_tut0);
         ini_close();
         room_goto(play_room);
     }
@@ -242,6 +258,73 @@ if (scp_button_pressed(x1level,y1level,x2level,y2level)) {
     room_goto(rm_level_select);
     
 }
+
+// Options
+if (scp_button_pressed(x1options,y1options,x2options,y2options)) {
+    
+    // move to options room
+    room_goto(rm_options);
+    
+}
+
+// Exit
+if (scp_button_pressed(x1exit,y1exit,x2exit,y2exit)) {
+
+    // exit game
+    game_end();
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Remember options</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// remember options
+
+ini_open("save.ini");
+
+// set fullscreen
+window_set_fullscreen(ini_read_real("options","fullscreen",0));
+// 0 means defaults to false (if not already set)
+
+ini_close();
 </string>
           </argument>
         </arguments>
@@ -338,25 +421,37 @@ c_normal,c_normal,c_clone,c_normal,1);
 draw_set_font(fnt_menu);
 draw_set_halign(fa_left);
 
+//scp_render_button(x1,y1,x2,y2,text,c_hovered,c_normal)
 
 // Play (or hub)
+scp_render_button(x1play,y1play,x2play,y2play,tplay,c_clone,c_normal);
 
+/*
 // if mouse on button then light it up
 if (point_in_rectangle(mouse_x,mouse_y,x1play,y1play,x2play,y2play))
     draw_set_colour(c_clone);
 else
     draw_set_colour(c_normal);
 draw_text(x1play,y1play,tplay);
+*/
 
 
 // Level select
+scp_render_button(x1level,y1level,x2level,y2level,tlevel,c_clone,c_normal);
 
+/*
 // if mouse on button then light it up
 if (point_in_rectangle(mouse_x,mouse_y,x1level,y1level,x2level,y2level))
     draw_set_colour(c_clone);
 else
     draw_set_colour(c_normal);
 draw_text(x1level,y1level,tlevel);
+*/
+
+// Options
+scp_render_button(x1options,y1options,x2options,y2options,toptions,c_clone,c_normal);
+
+scp_render_button(x1exit,y1exit,x2exit,y2exit,texit,c_clone,c_black);
 </string>
           </argument>
         </arguments>
