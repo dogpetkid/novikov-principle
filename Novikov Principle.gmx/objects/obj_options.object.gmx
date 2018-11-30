@@ -122,6 +122,13 @@ x1ful = 1/2 * hanchor - string_width(tful)/2;
 y1ful = y1del + 1.5*string_height(tdel); // shift under Remove save data
 x2ful = x1ful + string_width(tful);
 y2ful = y1ful + string_height(tful);
+
+// Help
+thelp = "help";
+x1help = (1-0.1)*room_width - string_width(thelp);
+y1help = 0.85*room_height;
+x2help = x1help + string_width(thelp);
+y2help = y1help + string_height(thelp);
 </string>
           </argument>
         </arguments>
@@ -204,6 +211,13 @@ if(scp_button_pressed(x1ful,y1ful,x2ful,y2ful)) {
     // save setting
     ini_write_real("options","fullscreen",window_get_fullscreen());
     ini_close();
+
+}
+
+// Help
+if(scp_button_pressed(x1help,y1help,x2help,y2help)) {
+    
+    url_open(working_directory+"help.html");
 
 }
 </string>
@@ -305,6 +319,9 @@ scp_render_button(x1del,y1del,x2del,y2del,tdel,c_warning,c_normal);
 if (window_get_fullscreen()) c_temp = c_fullon;
 else c_temp = c_fulloff;
 scp_render_button(x1ful,y1ful,x2ful,y2ful,tful,c_clone,c_temp);
+
+// Help
+scp_render_button(x1help,y1help,x2help,y2help,thelp,c_clone,c_black);
 </string>
           </argument>
         </arguments>
