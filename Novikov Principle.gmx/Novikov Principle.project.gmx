@@ -167,6 +167,9 @@
         <room>rooms\rm_puzzle12</room>
         <room>rooms\rm_puzzle13</room>
       </rooms>
+      <rooms name="Traps">
+        <room>rooms\rm_tut9</room>
+      </rooms>
       <room>rooms\rm_original</room>
     </rooms>
   </rooms>

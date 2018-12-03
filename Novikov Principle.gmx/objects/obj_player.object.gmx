@@ -52,11 +52,12 @@ ini_open("save.ini");
 ini_write_real("levels","play",room);
 
 // list levels
-ltut = global.ltut;
-lbut = global.lbut;
-lpp = global.lpp;
-lep = global.lep;
+ltut = global.tut;
+lbut = global.but;
+lpp = global.pp;
+lep = global.ep;
 lb2 = global.b2;
+ltrp = global.trp;
 
 // save if player gets to a section
 if (room == lbut)
@@ -70,6 +71,9 @@ ini_write_real("levels","ep",lep);
 
 if (room == lb2)
 ini_write_real("levels","b2",lb2);
+
+if (room == ltrp)
+ini_write_real("levels","trp",ltrp);
 
 ini_close();
 </string>

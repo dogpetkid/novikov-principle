@@ -96,11 +96,12 @@ c_locked = $0000ff;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ltut = global.ltut;
-lbut = global.lbut;
-lpp = global.lpp;
-lep = global.lep;
+            <string>ltut = global.tut;
+lbut = global.but;
+lpp = global.pp;
+lep = global.ep;
 lb2 = global.b2;
+ltrp = global.trp;
 </string>
           </argument>
         </arguments>
@@ -186,6 +187,16 @@ x1b2 = 1/2 * hanchor - string_width(tb2)/2; // shift over to the left
 y1b2 = y1ep + 1.5*string_height(tep);
 x2b2 = x1b2 + string_width(tb2);
 y2b2 = y1b2 + string_height(tb2);
+
+
+// Second column
+
+// Traps
+ttrp = "Traps";
+x1trp = 3/2 * hanchor - string_width(ttrp)/2; // shift over to the (upper) right
+y1trp = 1/2 * vanchor; // shift over to the upper (right)
+x2trp = x1trp + string_width(ttrp);
+y2trp = y1trp + string_height(ttrp);
 
 
 // More soon
@@ -294,6 +305,13 @@ if(scp_button_pressed(x1b2,y1b2,x2b2,y2b2)) {
     if (lb2 == ini_read_real("levels","b2",0))
     room_goto(lb2);
 
+}
+
+if(scp_button_pressed(x1trp,y1trp,x2trp,y2trp)) {
+
+    if (ltrp == ini_read_real("levels","trp",0))
+    room_goto(ltrp);
+    
 }
 
 ini_close();
@@ -417,12 +435,18 @@ scp_render_button(x1ep,y1ep,x2ep,y2ep,tep,c_clone,c_normal);
 else
 scp_render_button(x1ep,y1ep,x2ep,y2ep,tep,c_locked,c_locked);
 
-
 // Buttons 2
 if (lb2 == ini_read_real("levels","b2",0))
 scp_render_button(x1b2,y1b2,x2b2,y2b2,tb2,c_clone,c_normal);
 else
 scp_render_button(x1b2,y1b2,x2b2,y2b2,tb2,c_locked,c_locked);
+
+
+// Traps
+if (ltrp == ini_read_real("levels","trp",0))
+scp_render_button(x1trp,y1trp,x2trp,y2trp,ttrp,c_clone,c_normal);
+else
+scp_render_button(x1trp,y1trp,x2trp,y2trp,ttrp,c_locked,c_locked);
 
 ini_close();
 </string>

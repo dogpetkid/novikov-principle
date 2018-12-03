@@ -173,12 +173,21 @@ y2exit = y1exit + string_height(texit);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// provide a list of all "benchmark" levels for sections for all objects to use
-global.ltut = rm_tut0;
-global.lbut = rm_tut4;
-global.lpp = rm_tut5;
-global.lep = rm_puzzle6;
+            <string>// provide a all "benchmark" levels for sections for all objects to use
+global.tut = rm_tut0;
+global.but = rm_tut4;
+global.pp = rm_tut5;
+global.ep = rm_puzzle6;
 global.b2 = rm_tut8;
+global.trp = rm_tut9;
+
+// provide a list of "benchmarks"
+global.benchmarks[0] = global.tut;
+global.benchmarks[1] = global.but;
+global.benchmarks[2] = global.pp;
+global.benchmarks[3] = global.ep;
+global.benchmarks[4] = global.b2;
+global.benchmarks[5] = global.trp;
 </string>
           </argument>
         </arguments>
