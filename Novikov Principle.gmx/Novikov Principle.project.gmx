@@ -169,6 +169,11 @@
       </rooms>
       <rooms name="Traps">
         <room>rooms\rm_tut9</room>
+        <room>rooms\rm_puzzle14</room>
+        <room>rooms\rm_puzzle15</room>
+        <room>rooms\rm_puzzle16</room>
+        <room>rooms\rm_puzzle17</room>
+        <room>rooms\rm_puzzle18</room>
       </rooms>
       <room>rooms\rm_original</room>
     </rooms>
