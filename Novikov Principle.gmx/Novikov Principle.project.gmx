@@ -70,6 +70,8 @@
   <paths name="paths">
     <path>paths\path0</path>
     <path>paths\path1</path>
+    <path>paths\p_tut10_1</path>
+    <path>paths\p_tut10_0</path>
   </paths>
   <scripts name="scripts">
     <script>scripts\scp_render_button.gml</script>
@@ -132,6 +134,7 @@
     <rooms name="concepts">
       <room>rooms\rm_concept_push</room>
       <room>rooms\rm_shocker</room>
+      <room>rooms\rm_tut10</room>
       <room>rooms\rm_puzzle20</room>
     </rooms>
     <rooms name="tutorials">
