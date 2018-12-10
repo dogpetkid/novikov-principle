@@ -102,6 +102,7 @@ lpp = global.pp;
 lep = global.ep;
 lb2 = global.b2;
 ltrp = global.trp;
+lshk = global.shk;
 </string>
           </argument>
         </arguments>
@@ -197,6 +198,13 @@ x1trp = 3/2 * hanchor - string_width(ttrp)/2; // shift over to the (upper) right
 y1trp = 1/2 * vanchor; // shift over to the upper (right)
 x2trp = x1trp + string_width(ttrp);
 y2trp = y1trp + string_height(ttrp);
+
+// Shockers
+tshk = "Shockers";
+x1shk = 3/2 * hanchor - string_width(tshk)/2; // shift over to the right
+y1shk = y1trp + 1.5*string_height(ttrp);
+x2shk = x1shk + string_width(tshk);
+y2shk = y1shk + string_height(tshk);
 
 
 // More soon
@@ -307,10 +315,19 @@ if(scp_button_pressed(x1b2,y1b2,x2b2,y2b2)) {
 
 }
 
+// Traps
 if(scp_button_pressed(x1trp,y1trp,x2trp,y2trp)) {
 
     if (ltrp == ini_read_real("levels","trp",0))
     room_goto(ltrp);
+    
+}
+
+// Shockers
+if(scp_button_pressed(x1shk,y1shk,x2shk,y2shk)) {
+
+    if (lshk == ini_read_real("levels","shk",0))
+    room_goto(lshk);
     
 }
 
@@ -447,6 +464,12 @@ if (ltrp == ini_read_real("levels","trp",0))
 scp_render_button(x1trp,y1trp,x2trp,y2trp,ttrp,c_clone,c_normal);
 else
 scp_render_button(x1trp,y1trp,x2trp,y2trp,ttrp,c_locked,c_locked);
+
+// Shockers
+if (lshk == ini_read_real("levels","shk",0))
+scp_render_button(x1shk,y1shk,x2shk,y2shk,tshk,c_clone,c_normal);
+else
+scp_render_button(x1shk,y1shk,x2shk,y2shk,tshk,c_locked,c_locked);
 
 ini_close();
 </string>

@@ -180,6 +180,7 @@ global.pp = rm_tut5;
 global.ep = rm_puzzle6;
 global.b2 = rm_tut8;
 global.trp = rm_tut9;
+global.shk = rm_tut10;
 
 // provide a list of "benchmarks"
 global.benchmarks[0] = global.tut;
@@ -188,6 +189,7 @@ global.benchmarks[2] = global.pp;
 global.benchmarks[3] = global.ep;
 global.benchmarks[4] = global.b2;
 global.benchmarks[5] = global.trp;
+global.benchmarks[6] = global.shk;
 </string>
           </argument>
         </arguments>

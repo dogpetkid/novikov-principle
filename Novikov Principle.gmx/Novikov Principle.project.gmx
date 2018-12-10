@@ -68,10 +68,29 @@
     <background>background\bkg_menu</background>
   </backgrounds>
   <paths name="paths">
-    <path>paths\path0</path>
-    <path>paths\path1</path>
-    <path>paths\p_tut10_1</path>
-    <path>paths\p_tut10_0</path>
+    <paths name="concepts">
+      <path>paths\path1</path>
+      <path>paths\path0</path>
+    </paths>
+    <paths name="Shockers">
+      <path>paths\p_tut10_0</path>
+      <path>paths\p_tut10_1</path>
+      <path>paths\p_tut11_1</path>
+      <path>paths\p_tut11_0</path>
+      <path>paths\p_tut11_2</path>
+      <path>paths\p_puzzle19_0</path>
+      <path>paths\p_puzzle19_2</path>
+      <path>paths\p_puzzle20</path>
+      <path>paths\p_puzzle19_1</path>
+      <path>paths\p_puzzle21_2</path>
+      <path>paths\p_puzzle21_3</path>
+      <path>paths\p_puzzle22_0</path>
+      <path>paths\p_puzzle22_1</path>
+      <path>paths\p_puzzle22_2</path>
+      <path>paths\p_puzzle23_0</path>
+      <path>paths\p_puzzle23_1</path>
+      <path>paths\p_puzzle23_2</path>
+    </paths>
   </paths>
   <scripts name="scripts">
     <script>scripts\scp_render_button.gml</script>
@@ -134,8 +153,7 @@
     <rooms name="concepts">
       <room>rooms\rm_concept_push</room>
       <room>rooms\rm_shocker</room>
-      <room>rooms\rm_tut10</room>
-      <room>rooms\rm_puzzle20</room>
+      <room>rooms\rm_puzzle30</room>
     </rooms>
     <rooms name="tutorials">
       <room>rooms\rm_tut0</room>
@@ -177,6 +195,15 @@
         <room>rooms\rm_puzzle16</room>
         <room>rooms\rm_puzzle17</room>
         <room>rooms\rm_puzzle18</room>
+      </rooms>
+      <rooms name="Shockers">
+        <room>rooms\rm_tut10</room>
+        <room>rooms\rm_tut11</room>
+        <room>rooms\rm_puzzle19</room>
+        <room>rooms\rm_puzzle20</room>
+        <room>rooms\rm_puzzle21</room>
+        <room>rooms\rm_puzzle22</room>
+        <room>rooms\rm_puzzle23</room>
       </rooms>
       <room>rooms\rm_original</room>
     </rooms>
