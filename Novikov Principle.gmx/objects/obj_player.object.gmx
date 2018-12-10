@@ -1053,7 +1053,7 @@ if (instance_place(self.x,self.y,obj_exit)) {
     // goto next room or restart
     if (room_exists(room_next(room))) room_goto_next();
     else {
-        show_message("Extra tip: using ESCAPE jumps to the main menu.");
+        show_message("Extra tip: holding shift and clicking Play goes to the developer levels.");
         scp_fix_fullscreen();
         room_goto(rm_main_menu);
     }

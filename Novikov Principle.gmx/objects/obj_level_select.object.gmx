@@ -209,8 +209,8 @@ y2shk = y1shk + string_height(tshk);
 
 // More soon
 tmore = "More soon";
-x1more = 3/2 * hanchor - string_width(tpp)/2;
-y1more = y1pp; // looks cleaner aligned with Pixel Perfect
+x1more = 3/2 * hanchor - string_width(tmore)/2;
+y1more = y1b2; // looks cleaner aligned with Buttons 2
 x2more = x1more + string_width(tmore);
 y2more = y1more + string_height(tmore);
 </string>
