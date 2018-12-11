@@ -51,6 +51,25 @@
 ini_open("save.ini");
 ini_write_real("levels","play",room);
 
+// prepare to loop and check if the room is a benchmark room and save the progress
+
+for (
+// use height because first term shows the "section index"
+i = 0;
+i &lt; array_height_2d(global.benchmarks); i++) {
+
+    iroom = global.benchmarks[i,0];
+    iname = global.benchmarks[i,1];
+    
+    // if player is in the same room as a benchmark
+    if (room == iroom) {
+        // save said progress
+        ini_write_real("levels",iname,iroom);
+    }
+
+}
+
+/*
 // list levels
 ltut = global.tut;
 lbut = global.but;
@@ -78,6 +97,7 @@ ini_write_real("levels","trp",ltrp);
 
 if (room == lshk)
 ini_write_real("levels","shk",lshk);
+*/
 
 ini_close();
 </string>

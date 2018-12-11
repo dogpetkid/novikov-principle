@@ -182,14 +182,23 @@ global.b2 = rm_tut8;
 global.trp = rm_tut9;
 global.shk = rm_tut10;
 
-// provide a list of "benchmarks"
-global.benchmarks[0] = global.tut;
-global.benchmarks[1] = global.but;
-global.benchmarks[2] = global.pp;
-global.benchmarks[3] = global.ep;
-global.benchmarks[4] = global.b2;
-global.benchmarks[5] = global.trp;
-global.benchmarks[6] = global.shk;
+// provide a two dimentional array of "benchmarks"
+// the first column is the level id
+global.benchmarks[0,0] = global.tut;
+global.benchmarks[1,0] = global.but;
+global.benchmarks[2,0] = global.pp;
+global.benchmarks[3,0] = global.ep;
+global.benchmarks[4,0] = global.b2;
+global.benchmarks[5,0] = global.trp;
+global.benchmarks[6,0] = global.shk;
+// and the second is the level name
+global.benchmarks[0,1] = "tut";
+global.benchmarks[1,1] = "but";
+global.benchmarks[2,1] = "pp";
+global.benchmarks[3,1] = "ep";
+global.benchmarks[4,1] = "b2";
+global.benchmarks[5,1] = "trp";
+global.benchmarks[6,1] = "shk";
 </string>
           </argument>
         </arguments>
