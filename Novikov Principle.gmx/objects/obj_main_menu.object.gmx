@@ -137,63 +137,6 @@ y2exit = y1exit + string_height(texit);
           </argument>
         </arguments>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>605</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>create level list</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>// provide a all "benchmark" levels for sections for all objects to use
-global.tut = rm_tut0;
-global.but = rm_tut4;
-global.pp = rm_tut5;
-global.ep = rm_puzzle6;
-global.b2 = rm_tut8;
-global.trp = rm_tut9;
-global.shk = rm_tut10;
-
-// provide a list of "benchmarks"
-global.benchmarks[0] = global.tut;
-global.benchmarks[1] = global.but;
-global.benchmarks[2] = global.pp;
-global.benchmarks[3] = global.ep;
-global.benchmarks[4] = global.b2;
-global.benchmarks[5] = global.trp;
-global.benchmarks[6] = global.shk;
-</string>
-          </argument>
-        </arguments>
-      </action>
     </event>
     <event eventtype="3" enumb="0">
       <action>
@@ -385,6 +328,72 @@ window_set_fullscreen(ini_read_real("options","fullscreen",0));
 // 0 means defaults to false (if not already set)
 
 ini_close();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>create level list</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// provide a all "benchmark" levels for sections for all objects to use
+global.tut = rm_tut0;
+global.but = rm_tut4;
+global.pp = rm_tut5;
+global.ep = rm_puzzle6;
+global.b2 = rm_tut8;
+global.trp = rm_tut9;
+global.shk = rm_tut10;
+
+// provide a two dimentional array of "benchmarks"
+// the first column is the level id
+global.benchmarks[0,0] = global.tut;
+global.benchmarks[1,0] = global.but;
+global.benchmarks[2,0] = global.pp;
+global.benchmarks[3,0] = global.ep;
+global.benchmarks[4,0] = global.b2;
+global.benchmarks[5,0] = global.trp;
+global.benchmarks[6,0] = global.shk;
+// and the second is the level name
+global.benchmarks[0,1] = "tut";
+global.benchmarks[1,1] = "but";
+global.benchmarks[2,1] = "pp";
+global.benchmarks[3,1] = "ep";
+global.benchmarks[4,1] = "b2";
+global.benchmarks[5,1] = "trp";
+global.benchmarks[6,1] = "shk";
 </string>
           </argument>
         </arguments>
