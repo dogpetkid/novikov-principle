@@ -76,7 +76,7 @@ c_locked = $0000ff;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>list levels</string>
+            <string>list levels (Deprecated)</string>
           </argument>
         </arguments>
       </action>
@@ -96,7 +96,10 @@ c_locked = $0000ff;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ltut = global.tut;
+            <string>// Deprecated
+
+// obj_level_select uses global.benchmarks[]
+ltut = global.tut;
 lbut = global.but;
 lpp = global.pp;
 lep = global.ep;
@@ -429,7 +432,6 @@ scp_render_button_lockable(x1ep,y1ep,x2ep,y2ep,tep,c_clone,c_normal,3,
 // Buttons 2
 scp_render_button_lockable(x1b2,y1b2,x2b2,y2b2,tb2,c_clone,c_normal,4,
     c_locked,c_locked);
-
 
 // Traps
 scp_render_button_lockable(x1trp,y1trp,x2trp,y2trp,ttrp,c_clone,c_normal,5,

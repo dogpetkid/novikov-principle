@@ -69,36 +69,6 @@ i &lt; array_height_2d(global.benchmarks); i++) {
 
 }
 
-/*
-// list levels
-ltut = global.tut;
-lbut = global.but;
-lpp = global.pp;
-lep = global.ep;
-lb2 = global.b2;
-ltrp = global.trp;
-lshk = global.shk;
-
-// save if player gets to a section
-if (room == lbut)
-ini_write_real("levels","but",lbut);
-
-if (room == lpp)
-ini_write_real("levels","pp",lpp);
-
-if (room == lep)
-ini_write_real("levels","ep",lep);
-
-if (room == lb2)
-ini_write_real("levels","b2",lb2);
-
-if (room == ltrp)
-ini_write_real("levels","trp",ltrp);
-
-if (room == lshk)
-ini_write_real("levels","shk",lshk);
-*/
-
 ini_close();
 </string>
           </argument>
