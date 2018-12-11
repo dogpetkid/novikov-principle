@@ -94,6 +94,7 @@
   </paths>
   <scripts name="scripts">
     <script>scripts\scp_render_button.gml</script>
+    <script>scripts\scp_render_button_lockable.gml</script>
     <script>scripts\scp_button_pressed.gml</script>
     <script>scripts\scp_fix_fullscreen.gml</script>
     <script>scripts\scp_level_select_room_goto.gml</script>

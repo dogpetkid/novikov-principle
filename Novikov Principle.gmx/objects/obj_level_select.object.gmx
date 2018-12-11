@@ -391,7 +391,7 @@ draw_set_halign(fa_left);
             <kind>1</kind>
             <string>// render all the buttons
 
-//scp_render_button(x1,y1,x2,y2,text,c_hovered,c_normal)
+// scp_render_button(x1,y1,x2,y2,text,c_hovered,c_normal);
 
 ini_open("save.ini");
 
@@ -407,42 +407,37 @@ scp_render_button(x1more,y1more,x2more,y2more,tmore,c_normal,c_normal);
 
 
 // Sections below all are red when the are locked
+
+// section index refers to what spot of the global.benchmarks a section holds
+
+// scp_render_button_lockable(x1,y1,x2,y2,text,c_hovered,c_normal, section index,
+//     c_hovered_locked,c_normal_locked);
+
+
 // Button
-if (lbut == ini_read_real("levels","but",0))
-scp_render_button(x1but,y1but,x2but,y2but,tbut,c_clone,c_normal);
-else
-scp_render_button(x1but,y1but,x2but,y2but,tbut,c_locked,c_locked);
+scp_render_button_lockable(x1but,y1but,x2but,y2but,tbut,c_clone,c_normal,1,
+    c_locked,c_locked);
 
 // Pixel Perfect
-if (lpp == ini_read_real("levels","pp",0))
-scp_render_button(x1pp,y1pp,x2pp,y2pp,tpp,c_clone,c_normal);
-else
-scp_render_button(x1pp,y1pp,x2pp,y2pp,tpp,c_locked,c_locked);
+scp_render_button_lockable(x1pp,y1pp,x2pp,y2pp,tpp,c_clone,c_normal,2,
+    c_locked,c_locked);
 
 // Extended (Pixel) Perfect
-if (lep == ini_read_real("levels","ep",0))
-scp_render_button(x1ep,y1ep,x2ep,y2ep,tep,c_clone,c_normal);
-else
-scp_render_button(x1ep,y1ep,x2ep,y2ep,tep,c_locked,c_locked);
+scp_render_button_lockable(x1ep,y1ep,x2ep,y2ep,tep,c_clone,c_normal,3,
+    c_locked,c_locked);
 
 // Buttons 2
-if (lb2 == ini_read_real("levels","b2",0))
-scp_render_button(x1b2,y1b2,x2b2,y2b2,tb2,c_clone,c_normal);
-else
-scp_render_button(x1b2,y1b2,x2b2,y2b2,tb2,c_locked,c_locked);
+scp_render_button_lockable(x1b2,y1b2,x2b2,y2b2,tb2,c_clone,c_normal,4,
+    c_locked,c_locked);
 
 
 // Traps
-if (ltrp == ini_read_real("levels","trp",0))
-scp_render_button(x1trp,y1trp,x2trp,y2trp,ttrp,c_clone,c_normal);
-else
-scp_render_button(x1trp,y1trp,x2trp,y2trp,ttrp,c_locked,c_locked);
+scp_render_button_lockable(x1trp,y1trp,x2trp,y2trp,ttrp,c_clone,c_normal,5,
+    c_locked,c_locked);
 
 // Shockers
-if (lshk == ini_read_real("levels","shk",0))
-scp_render_button(x1shk,y1shk,x2shk,y2shk,tshk,c_clone,c_normal);
-else
-scp_render_button(x1shk,y1shk,x2shk,y2shk,tshk,c_locked,c_locked);
+scp_render_button_lockable(x1shk,y1shk,x2shk,y2shk,tshk,c_clone,c_normal,6,
+    c_locked,c_locked);
 
 ini_close();
 </string>

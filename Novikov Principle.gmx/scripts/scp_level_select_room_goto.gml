@@ -13,7 +13,7 @@ if (scp_button_pressed(argument0,argument1,argument2,argument3)) {
     // check benchmark can be traveled to
     // global.benchmarks[arg4,0] is the level id
     if (global.benchmarks[argument4,0] == 
-        // global.benchmarks[arg4,0] is the level name
+        // global.benchmarks[arg4,1] is the level name
         // 0 means default to not available if value not found
         ini_read_real("levels",global.benchmarks[argument4,1],0)) {
         
