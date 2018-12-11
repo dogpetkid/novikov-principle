@@ -259,7 +259,6 @@ y2more = y1more + string_height(tmore);
 
 // scp_button_pressed(x1,y1,x2,y2);
 
-// allow the 
 ini_open("save.ini");
 
 
@@ -283,53 +282,27 @@ if(scp_button_pressed(x1tut,y1tut,x2tut,y2tut)) {
 
 // make sure the player has been to that section for all sections below
 
-// Button
-if(scp_button_pressed(x1but,y1but,x2but,y2but)) {
-    
-    if (lbut == ini_read_real("levels","but",0))
-    room_goto(lbut);
+// section index refers to what spot of the global.benchmarks a section holds
 
-}
+// scp_level_select_room_goto(x1,y1,x2,y2, section index );
+
+// Button
+scp_level_select_room_goto(x1but,y1but,x2but,y2but,1);
 
 // Pixel Perfect
-if(scp_button_pressed(x1pp,y1pp,x2pp,y2pp)) {
-
-    if (lpp == ini_read_real("levels","pp",0))
-    room_goto(lpp);
-
-}
+scp_level_select_room_goto(x1pp,y1pp,x2pp,y2pp,2);
 
 // Extended (pixel) Perfect
-if(scp_button_pressed(x1ep,y1ep,x2ep,y2ep)) {
-    
-    if (lep == ini_read_real("levels","ep",0))
-    room_goto(lep);
-
-}
+scp_level_select_room_goto(x1ep,y1ep,x2ep,y2ep,3);
 
 // Buttons 2
-if(scp_button_pressed(x1b2,y1b2,x2b2,y2b2)) {
-
-    if (lb2 == ini_read_real("levels","b2",0))
-    room_goto(lb2);
-
-}
+scp_level_select_room_goto(x1b2,y1b2,x2b2,y2b2,4);
 
 // Traps
-if(scp_button_pressed(x1trp,y1trp,x2trp,y2trp)) {
-
-    if (ltrp == ini_read_real("levels","trp",0))
-    room_goto(ltrp);
-    
-}
+scp_level_select_room_goto(x1trp,y1trp,x2trp,y2trp,5);
 
 // Shockers
-if(scp_button_pressed(x1shk,y1shk,x2shk,y2shk)) {
-
-    if (lshk == ini_read_real("levels","shk",0))
-    room_goto(lshk);
-    
-}
+scp_level_select_room_goto(x1shk,y1shk,x2shk,y2shk,6);
 
 ini_close();
 </string>
