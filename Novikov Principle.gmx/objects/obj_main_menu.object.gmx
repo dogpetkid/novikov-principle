@@ -376,6 +376,7 @@ global.ep = rm_puzzle6;
 global.b2 = rm_tut8;
 global.trp = rm_tut9;
 global.shk = rm_tut10;
+global.flr = rm_tut12A;
 
 // provide a two dimentional array of "benchmarks"
 // the first column is the level id
@@ -386,6 +387,7 @@ global.benchmarks[3,0] = global.ep;
 global.benchmarks[4,0] = global.b2;
 global.benchmarks[5,0] = global.trp;
 global.benchmarks[6,0] = global.shk;
+global.benchmarks[7,0] = global.flr
 // and the second is the level name
 global.benchmarks[0,1] = "tut";
 global.benchmarks[1,1] = "but";
@@ -394,6 +396,7 @@ global.benchmarks[3,1] = "ep";
 global.benchmarks[4,1] = "b2";
 global.benchmarks[5,1] = "trp";
 global.benchmarks[6,1] = "shk";
+global.benchmarks[7,1] = "flr";
 </string>
           </argument>
         </arguments>

@@ -49,6 +49,10 @@
 // you continue from the room you were in last
 
 ini_open("save.ini");
+
+// only save if on a non-floor level
+// floor will handle saving in this case
+if (!instance_exists(obj_floor_channels))
 ini_write_real("levels","play",room);
 
 // prepare to loop and check if the room is a benchmark room and save the progress
@@ -1011,7 +1015,7 @@ if (instance_place(self.x,self.y,obj_shocker)) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>On end room tile</string>
+            <string>Proceed to next room</string>
           </argument>
         </arguments>
       </action>
@@ -1048,6 +1052,13 @@ if (instance_place(self.x,self.y,obj_exit)) {
         room_goto(rm_main_menu);
     }
 
+}
+
+// TEMP!!!
+// dev skip
+if (keyboard_check_pressed(ord("1")) &amp;&amp; keyboard_check(vk_shift)) {
+    instance_create(0,0,obj_particle_deleter);
+    room_goto_next();
 }
 </string>
           </argument>
@@ -1373,8 +1384,15 @@ event_user(2); // FUNCITON: delete the clone path
 // remove all particles
 instance_create(0,0,obj_particle_deleter);
 
-// restart room
-room_restart();
+// restart puzzle (if no floors)
+if (!instance_exists(obj_floor_channels)) {
+    room_restart();
+} else {
+    ini_open("save.ini");
+    // in a floors puzzle, go to the main floor saved on levels&gt;play (tut0 should never be travled too)
+    room_goto(ini_read_real("levels","play",rm_tut0));
+    ini_close();
+}
 </string>
           </argument>
         </arguments>

@@ -125,6 +125,9 @@
       <object>objects\obj_button_red</object>
       <object>objects\obj_button_purple</object>
     </objects>
+    <objects name="Floors">
+      <object>objects\obj_floor_channels</object>
+    </objects>
     <objects name="Particles">
       <object>objects\obj_particle_container</object>
       <object>objects\obj_particle_deleter</object>
@@ -206,6 +209,10 @@
         <room>rooms\rm_puzzle21</room>
         <room>rooms\rm_puzzle22</room>
         <room>rooms\rm_puzzle23</room>
+      </rooms>
+      <rooms name="Floors">
+        <room>rooms\rm_tut12A</room>
+        <room>rooms\rm_tut12B</room>
       </rooms>
       <room>rooms\rm_original</room>
     </rooms>
