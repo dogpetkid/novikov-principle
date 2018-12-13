@@ -48,10 +48,13 @@
             <string>// set first tick status as to save on first tick
 first = true;
 
+
+/*
 // TEMP
 // if there is no player, spawn one
 if (!instance_exists(obj_player))
 instance_create(self.x,self.y,obj_player);
+*/
 </string>
           </argument>
         </arguments>
@@ -103,7 +106,29 @@ if (first) {
         ini_write_real("levels","play",room);
         ini_close();
     }
+    
+    
+    // if the main puzzle room and no stairs are in memory
+    if (mainfloor &amp;&amp; global.stairs==-1) {
+        instance_create(self.x,self.y,obj_player);
+    
+    // otherwise travel to stairs
+    } else {
+        
+        // with all stairs
+        with (obj_floor_stairs) {
+        
+            show_debug_message(channel);
+            // if it is the staircase in memory, travel to it
+            if (channel==global.stairs)
+            instance_create(self.x,self.y,obj_player);
+            
+        }
+    
+    }
 
+    // don't run first tick more than the first time
+    first = false;
 }
 </string>
           </argument>

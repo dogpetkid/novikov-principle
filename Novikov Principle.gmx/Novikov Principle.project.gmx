@@ -62,6 +62,7 @@
       <sprite>sprites\spr_key_wasd_inc</sprite>
       <sprite>sprites\spr_key_arrow</sprite>
     </sprites>
+    <sprite>sprites\spr_stairs</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -102,6 +103,7 @@
   <fonts name="fonts">
     <font>fonts\fnt_menu</font>
     <font>fonts\fnt_keys</font>
+    <font>fonts\fnt_stairs</font>
   </fonts>
   <objects name="objects">
     <objects name="Main">
@@ -127,6 +129,7 @@
     </objects>
     <objects name="Floors">
       <object>objects\obj_floor_channels</object>
+      <object>objects\obj_floor_stairs</object>
     </objects>
     <objects name="Particles">
       <object>objects\obj_particle_container</object>
