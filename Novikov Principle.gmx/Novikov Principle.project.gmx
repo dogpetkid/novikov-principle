@@ -217,6 +217,14 @@
       <rooms name="Floors">
         <room>rooms\rm_tut12A</room>
         <room>rooms\rm_tut12B</room>
+        <room>rooms\rm_tut13A</room>
+        <room>rooms\rm_tut13B</room>
+        <room>rooms\rm_tut14A</room>
+        <room>rooms\rm_tut14B</room>
+        <room>rooms\rm_puzzle24A</room>
+        <room>rooms\rm_puzzle24B</room>
+        <room>rooms\rm_puzzle25A</room>
+        <room>rooms\rm_puzzle25B</room>
       </rooms>
       <room>rooms\rm_original</room>
     </rooms>

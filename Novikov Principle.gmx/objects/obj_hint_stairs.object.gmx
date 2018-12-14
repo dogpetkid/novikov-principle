@@ -137,6 +137,8 @@ y_space = room_height/20;
     // if the player collides with the stairs, tell them to use space
     if (instance_place(self.x,self.y,obj_floor_stairs))
         other.render = true;
+    else
+        other.render = false;
 
 }
 </string>
