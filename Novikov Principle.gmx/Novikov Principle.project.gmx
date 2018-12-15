@@ -226,6 +226,12 @@
         <room>rooms\rm_puzzle25A</room>
         <room>rooms\rm_puzzle25B</room>
       </rooms>
+      <rooms name="Perfect Floors">
+        <room>rooms\rm_tut15A</room>
+        <room>rooms\rm_tut15B</room>
+        <room>rooms\rm_puzzle26A</room>
+        <room>rooms\rm_puzzle26B</room>
+      </rooms>
       <room>rooms\rm_original</room>
     </rooms>
   </rooms>

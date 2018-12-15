@@ -118,7 +118,6 @@ if (first) {
         // with all stairs
         with (obj_floor_stairs) {
         
-            show_debug_message(channel);
             // if it is the staircase in memory, travel to it
             if (channel==global.stairs)
             instance_create(self.x,self.y,obj_player);

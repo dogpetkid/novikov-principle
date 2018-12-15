@@ -216,6 +216,13 @@ y1flr = y1shk + 1.5*string_height(tshk);
 x2flr = x1flr + string_width(tflr);
 y2flr = y1flr + string_height(tflr);
 
+// Perfect Floors
+tpfl = "Perfect Floors";
+x1pfl = 3/2 * hanchor - string_width(tpfl)/2; // shift over to the right
+y1pfl = y1flr + 1.5*string_height(tflr);
+x2pfl = x1pfl + string_width(tpfl);
+y2pfl = y1pfl + string_height(tpfl);
+
 
 // More soon
 tmore = "More soon";
@@ -316,6 +323,9 @@ scp_level_select_room_goto(x1shk,y1shk,x2shk,y2shk,6);
 
 // Floors
 scp_level_select_room_goto(x1flr,y1flr,x2flr,y2flr,7);
+
+// Perfect Floors
+scp_level_select_room_goto(x1pfl,y1pfl,x2pfl,y2pfl,8);
 
 ini_close();
 </string>
@@ -453,6 +463,10 @@ scp_render_button_lockable(x1shk,y1shk,x2shk,y2shk,tshk,c_clone,c_normal,6,
 
 // Floors
 scp_render_button_lockable(x1flr,y1flr,x2flr,y2flr,tflr,c_clone,c_normal,7,
+    c_locked,c_locked);
+   
+// Floors
+scp_render_button_lockable(x1pfl,y1pfl,x2pfl,y2pfl,tpfl,c_clone,c_normal,8,
     c_locked,c_locked);
 
 ini_close();
