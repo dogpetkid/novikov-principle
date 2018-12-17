@@ -109,7 +109,7 @@ if (first) {
     
     
     // if the main puzzle room and no stairs are in memory
-    if (mainfloor &amp;&amp; global.stairs==-1) {
+    if (global.stairs==-1) {
         instance_create(self.x,self.y,obj_player);
     
     // otherwise travel to stairs
