@@ -91,6 +91,9 @@
       <path>paths\p_puzzle23_0</path>
       <path>paths\p_puzzle23_1</path>
       <path>paths\p_puzzle23_2</path>
+      <path>paths\p_puzzle27A_0</path>
+      <path>paths\p_puzzle27A_1</path>
+      <path>paths\p_puzzle27A_2</path>
     </paths>
   </paths>
   <scripts name="scripts">
@@ -231,6 +234,8 @@
         <room>rooms\rm_tut15B</room>
         <room>rooms\rm_puzzle26A</room>
         <room>rooms\rm_puzzle26B</room>
+        <room>rooms\rm_puzzle27A</room>
+        <room>rooms\rm_puzzle27B</room>
       </rooms>
       <room>rooms\rm_original</room>
     </rooms>

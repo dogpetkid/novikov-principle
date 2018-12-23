@@ -60,7 +60,7 @@ instance_create(self.x,self.y,obj_player);
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="3" enumb="1">
       <action>
         <libid>1</libid>
         <id>605</id>
@@ -77,7 +77,7 @@ instance_create(self.x,self.y,obj_player);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Save on first tick if first floor</string>
+            <string>Save on first tick if first floor (on Begin step to guarentee a player in the room ASAP)</string>
           </argument>
         </arguments>
       </action>
