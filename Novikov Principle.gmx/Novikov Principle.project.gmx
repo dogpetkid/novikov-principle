@@ -236,6 +236,8 @@
         <room>rooms\rm_puzzle26B</room>
         <room>rooms\rm_puzzle27A</room>
         <room>rooms\rm_puzzle27B</room>
+        <room>rooms\rm_puzzle28A</room>
+        <room>rooms\rm_puzzle28B</room>
       </rooms>
       <room>rooms\rm_original</room>
     </rooms>
